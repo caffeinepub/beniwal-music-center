@@ -1,5 +1,6 @@
-import { Music, Wrench, Zap, Phone, MapPin, Clock, Menu, X } from 'lucide-react';
+import { Music, Wrench, Zap, Phone, MapPin, Clock, Menu, X, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,7 +20,7 @@ function App() {
         <nav className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-3">
             <img 
-              src="/assets/generated/bmc-logo.dim_512x512.png" 
+              src="/assets/generated/bmc-icon.dim_512x512.png" 
               alt="Beniwal Music Center Logo" 
               className="h-10 w-10 object-contain"
             />
@@ -111,8 +112,15 @@ function App() {
 
       <main>
         {/* Hero Section */}
-        <section id="home" className="relative overflow-hidden bg-gradient-to-br from-background via-accent/20 to-background">
-          <div className="absolute inset-0 bg-[url('/assets/generated/bmc-hero-banner.dim_1600x600.png')] bg-cover bg-center opacity-20" />
+        <section id="home" className="relative overflow-hidden">
+          <div className="absolute inset-0">
+            <img 
+              src="/assets/generated/hero-photo.dim_1600x900.jpg" 
+              alt="Tractor with custom music system in field" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60" />
+          </div>
           <div className="container relative py-20 md:py-32">
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
@@ -135,7 +143,7 @@ function App() {
         {/* Tractor Music Systems Section */}
         <section id="music-systems" className="py-16 md:py-24 bg-background">
           <div className="container">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <div className="flex items-center gap-3 mb-6">
                 <div className="rounded-full bg-primary/10 p-3">
                   <Music className="h-8 w-8 text-primary" />
@@ -145,6 +153,53 @@ function App() {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Transform your tractor cabin into a premium audio experience. We specialize in high-quality music systems designed specifically for agricultural vehicles, ensuring crystal-clear sound even in the toughest working conditions.
               </p>
+
+              {/* Image Gallery */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div className="rounded-xl overflow-hidden shadow-lg">
+                  <img 
+                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM (2).jpeg" 
+                    alt="Tractor with illuminated music system at night" 
+                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-lg">
+                  <img 
+                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM (1).jpeg" 
+                    alt="Custom tractor speaker installation" 
+                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-lg">
+                  <img 
+                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM.jpeg" 
+                    alt="Premium speaker box with LED lighting" 
+                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-lg">
+                  <img 
+                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM.jpeg" 
+                    alt="Tractor with custom audio setup" 
+                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-lg">
+                  <img 
+                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.20 AM.jpeg" 
+                    alt="Tractor with music system in field" 
+                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-lg">
+                  <img 
+                    src="/assets/generated/speaker-box-photo.dim_1200x800.jpg" 
+                    alt="Professional speaker box system" 
+                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
                   <h3 className="text-xl font-semibold text-card-foreground mb-3">Premium Sound Quality</h3>
@@ -178,7 +233,7 @@ function App() {
         {/* Tractor Modification Materials Section */}
         <section id="modifications" className="py-16 md:py-24 bg-accent/30">
           <div className="container">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <div className="flex items-center gap-3 mb-6">
                 <div className="rounded-full bg-primary/10 p-3">
                   <Wrench className="h-8 w-8 text-primary" />
@@ -188,6 +243,39 @@ function App() {
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                 Upgrade and customize your tractor with our extensive range of modification materials. From performance enhancements to aesthetic improvements, we stock everything you need at <span className="font-semibold text-foreground">reasonable prices</span>.
               </p>
+
+              {/* Image Gallery */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div className="rounded-xl overflow-hidden shadow-lg">
+                  <img 
+                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM (1).jpeg" 
+                    alt="Tractor modification parts and accessories" 
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-lg">
+                  <img 
+                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM (1)-1.jpeg" 
+                    alt="LED lights and modification materials" 
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-lg">
+                  <img 
+                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.23 AM (1).jpeg" 
+                    alt="Tractor hood shelves and accessories" 
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-lg">
+                  <img 
+                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.23 AM.jpeg" 
+                    alt="Exhaust pipes and modification parts" 
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              </div>
+
               <div className="rounded-xl border border-border bg-card p-8 shadow-sm mb-8">
                 <h3 className="text-2xl font-semibold text-card-foreground mb-4">Available at Reasonable Prices</h3>
                 <p className="text-muted-foreground mb-6">
@@ -296,9 +384,18 @@ function App() {
           <div className="container">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-center">Contact Us</h2>
-              <p className="text-lg text-muted-foreground mb-12 text-center">
+              <p className="text-lg text-muted-foreground mb-8 text-center">
                 Get in touch with us for inquiries, quotes, or to schedule a service appointment.
               </p>
+
+              {/* Owner Prompt Alert */}
+              <Alert className="mb-8 border-primary/50 bg-primary/5">
+                <AlertCircle className="h-5 w-5 text-primary" />
+                <AlertDescription className="text-foreground">
+                  <strong>Site Owner:</strong> Please provide your phone number, business address, and operating hours to complete this section. This information will help customers reach you easily.
+                </AlertDescription>
+              </Alert>
+
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="rounded-xl border border-border bg-card p-6 shadow-sm text-center">
                   <div className="inline-flex items-center justify-center rounded-full bg-primary/10 p-4 mb-4">
@@ -333,7 +430,7 @@ function App() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <img 
-                src="/assets/generated/bmc-logo.dim_512x512.png" 
+                src="/assets/generated/bmc-icon.dim_512x512.png" 
                 alt="Beniwal Music Center Logo" 
                 className="h-8 w-8 object-contain"
               />

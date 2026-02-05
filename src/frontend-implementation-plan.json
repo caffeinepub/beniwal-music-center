@@ -1,154 +1,169 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Beniwal Music Center marketing website (single-page responsive landing)",
+  "title": "Integrate uploaded photos across single-page site and update favicon/branding",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Create a responsive landing/home section that introduces “Beniwal Music Center” and summarizes offerings.",
+      "id": "REQ-9",
+      "summary": "Add all 12 uploaded images as optimized static assets and place them across hero and service sections with responsive, well-cropped layouts and alt text.",
       "acceptanceCriteria": [
-        "Page shows the title “Beniwal Music Center” prominently.",
-        "Landing section includes a short description of the shop in English.",
-        "Layout is responsive (mobile + desktop) and visually coherent."
+        "All 12 uploaded images are included in the built frontend as static assets (no backend/image fetching).",
+        "Hero section includes at least one of the uploaded tractor/music visuals in a prominent way without harming text readability (e.g., overlay/gradient as needed).",
+        "Each service section (Music Systems, Modification Materials, Electrical Mechanic Services) displays relevant uploaded imagery in a clean responsive layout (no broken aspect ratios, no overflow on mobile).",
+        "All images include English alt text (generic descriptive alt text is OK).",
+        "Page performance is maintained by using resized/optimized variants (no full-resolution originals used directly in main layout where unnecessary)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/public/assets/generated/hero-photo.dim_1600x900.jpg",
           "operation": "create",
-          "description": "Create the single-page marketing layout with a clear landing/hero section containing the prominent “Beniwal Music Center” title and an English intro + brief summary of main offerings; render all required sections in a responsive layout."
+          "description": "Add generated optimized hero background image as a static asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/music-systems-photo.dim_1200x800.jpg",
+          "operation": "create",
+          "description": "Add generated optimized Music Systems section image as a static asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/speaker-box-photo.dim_1200x800.jpg",
+          "operation": "create",
+          "description": "Add generated optimized Music Systems-related image (speaker box) as a static asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/lighting-shelf-photo.dim_1200x800.jpg",
+          "operation": "create",
+          "description": "Add generated optimized section image (lighting shelf) as a static asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/modification-parts-collage.dim_1200x800.jpg",
+          "operation": "create",
+          "description": "Add generated optimized Modifications section collage image as a static asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/exhaust-parts-photo.dim_1200x800.jpg",
+          "operation": "create",
+          "description": "Add generated optimized Modifications-related image (exhaust parts) as a static asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/tractor-field-photo.dim_1200x800.jpg",
+          "operation": "create",
+          "description": "Add generated optimized tractor field photo as a static asset for cross-section visual variety."
+        },
+        {
+          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.20 AM.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM (1).jpeg",
+          "operation": "create",
+          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM (2).jpeg",
+          "operation": "create",
+          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM (1)-1.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM (1).jpeg",
+          "operation": "create",
+          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.23 AM (1).jpeg",
+          "operation": "create",
+          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.23 AM.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/download.webp",
+          "operation": "create",
+          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/download-1.webp",
+          "operation": "create",
+          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update the existing single-page hero and the three service sections to incorporate the uploaded/static images using responsive grid/card layouts, safe cropping (object-cover), and English alt text; ensure the hero uses frontend/public/assets/generated/hero-photo.dim_1600x900.jpg with an overlay/gradient to preserve text readability; distribute all 12 uploaded images across hero + service sections (and optional small in-section galleries) while keeping mobile layouts free of overflow and maintaining performance via the generated optimized variants where available."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Adjust global styles only as needed to support consistent image presentation (e.g., reusable utility classes for safe aspect-ratio cropping/overlays) without introducing new global stylesheet paths."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Replace favicon with enhanced generated icon derived from the signboard image and update header/footer logo to match the new brand icon.",
+      "acceptanceCriteria": [
+        "The HTML head includes favicon links that load the new generated icon assets (e.g., 32x32 favicon + 180x180 apple-touch icon).",
+        "Browser tab/favicon updates correctly after rebuild.",
+        "Header and footer logo render crisply and consistently with the updated brand icon (no stretching; transparent background if applicable)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/bmc-icon.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated square brand icon asset derived from the signboard image."
+        },
+        {
+          "path": "frontend/public/assets/generated/favicon-32.dim_32x32.png",
+          "operation": "create",
+          "description": "Add the generated 32x32 favicon asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
+          "operation": "create",
+          "description": "Add the generated Apple touch icon asset."
         },
         {
           "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Ensure the document metadata/title remains “Beniwal Music Center” and is consistent with the in-app header/hero branding."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Add an informational “Tractor Music Systems” section describing products/services (no checkout).",
-      "acceptanceCriteria": [
-        "A section labeled “Tractor Music Systems” is present and easy to find via scrolling/navigation.",
-        "Section contains English descriptive text (not placeholder lorem ipsum)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add a dedicated “Tractor Music Systems” section with English informational copy (services/products overview only; no cart/checkout elements) and a stable section anchor/id for navigation."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Add an informational “Tractor Modification Materials” section mentioning reasonable prices.",
-      "acceptanceCriteria": [
-        "A section labeled “Tractor Modification Materials” is present.",
-        "Section explicitly mentions “reasonable prices” (or equivalent phrasing) in English."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add a dedicated “Tractor Modification Materials” section with English copy that explicitly communicates materials are available at reasonable prices, plus a stable section anchor/id for navigation."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Add an “Electrical Mechanic Services” section stating an electrical mechanic is available.",
-      "acceptanceCriteria": [
-        "A section labeled “Electrical Mechanic Services” (or very similar) is present.",
-        "Section clearly states availability of an electrical mechanic in English."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add a dedicated “Electrical Mechanic Services” section with English copy that clearly states an electrical mechanic is available, plus a stable section anchor/id for navigation."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Add a “Contact” section with placeholders for phone, address, and hours to be filled later.",
-      "acceptanceCriteria": [
-        "A section labeled “Contact” is present.",
-        "Contact section includes placeholders for at least: Phone, Address, and Hours.",
-        "Placeholders are clearly marked as “To be added” / “Coming soon” (or similar), not fake data."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add a “Contact” section containing clearly labeled placeholders for Phone, Address, and Business Hours marked as “To be added/Coming soon”, plus a stable section anchor/id for navigation."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Add simple, mobile-friendly navigation to jump to each section (Home, Tractor Music Systems, Tractor Modification Materials, Electrical Mechanic Services, Contact).",
-      "acceptanceCriteria": [
-        "Navigation is visible on desktop and usable on mobile (e.g., stacked or menu).",
-        "Clicking each nav item scrolls/jumps to the correct section."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Implement a header navigation with links that jump/scroll to the correct in-page section anchors (Home, Tractor Music Systems, Tractor Modification Materials, Electrical Mechanic Services, Contact), ensuring the nav adapts for mobile (e.g., stacked/collapsible)."
-        }
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "summary": "Apply a cohesive, tractor/automotive-appropriate visual theme that avoids a blue/purple-dominant palette.",
-      "acceptanceCriteria": [
-        "Typography, buttons/links, and section styling look consistent across the page.",
-        "Primary color palette is not predominantly blue/purple.",
-        "Design feels appropriate for an automotive/tractor services shop (clean, bold, practical)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "create",
-          "description": "Create global styles and Tailwind base layers (including CSS variables used by the template) with a warm, rugged automotive/tractor palette (avoiding blue/purple-dominant tones) and consistent typography/spacing defaults across sections."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Adjust/extend theme tokens as needed to support the cohesive non-blue/purple brand styling (colors/typography/spacing) used across the site while keeping the design clean and practical."
+          "description": "Update the HTML head to include favicon and apple-touch-icon link tags referencing frontend/public/assets/generated/favicon-32.dim_32x32.png and frontend/public/assets/generated/apple-touch-icon.dim_180x180.png, ensuring the new icons load after rebuild."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Apply consistent section styling, typography hierarchy, and button/link styling using the site theme to ensure a cohesive look across the entire single-page layout."
+          "description": "Replace the header and footer logo image usage to reference frontend/public/assets/generated/bmc-icon.dim_512x512.png, ensuring crisp rendering (no stretching) and consistent sizing across breakpoints."
         }
       ]
     },
     {
-      "id": "REQ-8",
-      "summary": "Add generated static image assets (logo + hero banner) under frontend/public/assets/generated and reference them in the UI.",
+      "id": "REQ-11",
+      "summary": "Add an on-page English prompt in the Contact section asking the owner to provide phone, address, and business hours while keeping placeholders.",
       "acceptanceCriteria": [
-        "Generated images are present under frontend/public/assets/generated and are referenced by the UI.",
-        "Logo is displayed in the header/hero area.",
-        "Hero/banner image is displayed in the landing section without layout shift or distortion."
+        "Contact section still shows placeholders for Phone/Address/Business Hours.",
+        "A visible English note/callout in the Contact section asks the owner to provide phone, address, and business hours to update the site."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/bmc-logo.dim_512x512.png",
-          "operation": "create",
-          "description": "Add the generated logo asset at frontend/public/assets/generated/bmc-logo.dim_512x512.png (static public asset to be referenced by the UI)."
-        },
-        {
-          "path": "frontend/public/assets/generated/bmc-hero-banner.dim_1600x600.png",
-          "operation": "create",
-          "description": "Add the generated hero banner asset at frontend/public/assets/generated/bmc-hero-banner.dim_1600x600.png (static public asset to be referenced by the UI)."
-        },
-        {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Reference frontend/public/assets/generated/bmc-logo.dim_512x512.png in the header/hero branding area and display frontend/public/assets/generated/bmc-hero-banner.dim_1600x600.png in the landing section with responsive sizing to avoid distortion and minimize layout shift."
+          "description": "Add a clearly visible English callout/note within the existing Contact section prompting the site owner to provide phone number, address, and business hours, while keeping the current placeholders intact."
         }
       ]
     }

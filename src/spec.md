@@ -1,14 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Create a responsive one-page marketing website for “Beniwal Music Center” that clearly presents the shop’s tractor music systems, modification materials, electrical mechanic services, and contact placeholders.
+**Goal:** Make the single-page site more visually attractive by placing the 12 uploaded photos across key sections and update branding assets (favicon + logo) derived from the shop signboard image.
 
 **Planned changes:**
-- Build a responsive landing/home section with the prominent title “Beniwal Music Center” and a short English introduction to the shop.
-- Add dedicated on-page sections: “Tractor Music Systems”, “Tractor Modification Materials” (mentioning reasonable prices), and “Electrical Mechanic Services” (stating an electrical mechanic is available).
-- Add a “Contact” section with clearly marked placeholders for Phone, Address, and Hours (to be added later).
-- Add simple navigation links to jump/scroll to: Home, Tractor Music Systems, Tractor Modification Materials, Electrical Mechanic Services, Contact.
-- Apply a cohesive, bold, practical visual theme suitable for a tractor/automotive shop, avoiding a blue/purple-dominant palette.
-- Include generated static image assets (logo and hero banner) stored under `frontend/public/assets/generated` and referenced in the header/hero/landing area.
+- Add all 12 uploaded images as optimized static frontend assets and place them across the page (hero + relevant service sections) using responsive layouts (grid/cards) with appropriate cropping for mobile/desktop.
+- Update the hero section to feature a prominent uploaded tractor/music visual while preserving text readability (e.g., overlay/gradient).
+- Replace the favicon with an enhanced square icon derived from the Beniwal Music Center / Beniwal Music Stereo signboard image, and update header/footer logo to match (crisp rendering; transparent background if applicable).
+- Add English alt text for all placed images.
+- Add an on-page English note in the Contact section asking the owner to provide phone number, address, and business hours (placeholders remain).
 
-**User-visible outcome:** Visitors can view a clean, mobile-friendly site for Beniwal Music Center, navigate to each service section, see a logo and hero banner, and find a contact section with clearly marked “coming soon/to be added” contact details.
+**User-visible outcome:** The site displays the uploaded photos throughout the hero and service sections in a clean, responsive layout, shows the updated favicon/branding in the browser tab and header/footer, and includes a clear prompt in the Contact section to provide real contact details later.
