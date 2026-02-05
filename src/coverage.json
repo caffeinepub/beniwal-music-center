@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-05T21:38:31.739Z",
+  "generatedAt": "2026-02-05T22:08:40.969Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -11,8 +11,8 @@
     "implemented": 3,
     "items": [
       {
-        "id": "REQ-10",
-        "summary": "Replace the website icon (favicon) with an enhanced version derived from the user-selected uploaded image (the Beniwal Music Center / Beniwal Music Stereo signboard image), and update the header/footer logo to match the new branding image where appropriate.",
+        "id": "REQ-12",
+        "summary": "Generate a new set of brand icon assets from the newly uploaded image `download-2.webp` and use them consistently across the site (favicon in `frontend/index.html`, and the header/footer logo image in `frontend/src/App.tsx`).",
         "status": "implemented",
         "plannedFiles": [
           "frontend/public/assets/generated/bmc-icon.dim_512x512.png",
@@ -22,67 +22,59 @@
           "frontend/src/App.tsx"
         ],
         "matchedFiles": [
+          "frontend/public/assets/generated/bmc-icon.dim_512x512.png",
+          "frontend/public/assets/generated/favicon-32.dim_32x32.png",
+          "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Fix the issue where images are not visible by ensuring all image assets referenced in the React app exist in the deployed build and are referenced via URL-safe paths (no broken image links in hero or section galleries).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/SafeImage.tsx",
+          "frontend/public/assets/generated/bmc-hero-banner.dim_1600x600.png",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/SafeImage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Rebuild/redeploy the site so that the public link resolves successfully (no “Canister ID Not Resolved” error) and the latest assets (including the new icon images) are served.",
+        "status": "implemented",
+        "plannedFiles": [
           "frontend/index.html",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-11",
-        "summary": "After the visual updates are complete, add a clear on-page prompt in the Contact section asking the site owner to provide contact information (phone number, address, and business hours) so the placeholders can be replaced later (English text).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/App.tsx"
+          "frontend/public/assets/generated/favicon-32.dim_32x32.png"
         ],
         "matchedFiles": [
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-9",
-        "summary": "Add the 12 uploaded images as optimized static assets and place them throughout the existing single-page site to make it more visually attractive (hero + relevant service sections), using responsive layouts (grid/cards) and ensuring images are cropped appropriately for mobile and desktop.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/public/assets/generated/hero-photo.dim_1600x900.jpg",
-          "frontend/public/assets/generated/music-systems-photo.dim_1200x800.jpg",
-          "frontend/public/assets/generated/speaker-box-photo.dim_1200x800.jpg",
-          "frontend/public/assets/generated/lighting-shelf-photo.dim_1200x800.jpg",
-          "frontend/public/assets/generated/modification-parts-collage.dim_1200x800.jpg",
-          "frontend/public/assets/generated/exhaust-parts-photo.dim_1200x800.jpg",
-          "frontend/public/assets/generated/tractor-field-photo.dim_1200x800.jpg",
-          "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.20 AM.jpeg",
-          "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM (1).jpeg",
-          "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM (2).jpeg",
-          "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM.jpeg",
-          "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM (1)-1.jpeg",
-          "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM (1).jpeg",
-          "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM.jpeg",
-          "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.23 AM (1).jpeg",
-          "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.23 AM.jpeg",
-          "frontend/public/assets/uploads/download.webp",
-          "frontend/public/assets/uploads/download-1.webp",
-          "frontend/src/App.tsx",
-          "frontend/src/index.css"
-        ],
-        "matchedFiles": [
-          "frontend/public/assets/generated/speaker-box-photo.dim_1200x800.jpg",
-          "frontend/public/assets/generated/exhaust-parts-photo.dim_1200x800.jpg",
-          "frontend/public/assets/generated/tractor-field-photo.dim_1200x800.jpg",
-          "frontend/src/App.tsx"
+          "frontend/public/assets/generated/favicon-32.dim_32x32.png"
         ]
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.html",
-    "frontend/public/assets/generated/exhaust-parts-photo.dim_1200x800.jpg",
-    "frontend/public/assets/generated/speaker-box-photo.dim_1200x800.jpg",
-    "frontend/public/assets/generated/tractor-field-photo.dim_1200x800.jpg",
+    "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
+    "frontend/public/assets/generated/bmc-icon.dim_512x512.png",
+    "frontend/public/assets/generated/favicon-32.dim_32x32.png",
     "frontend/src/App.tsx",
+    "frontend/src/components/SafeImage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

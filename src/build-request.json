@@ -1,96 +1,92 @@
 {
   "kind": "build_request",
-  "title": "Use uploaded photos across the site and update the website icon (favicon)",
-  "priority": "high",
+  "title": "Rebuild site to restore visible images and replace website icon with newly uploaded image",
+  "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-9",
-      "text": "Add the 12 uploaded images as optimized static assets and place them throughout the existing single-page site to make it more visually attractive (hero + relevant service sections), using responsive layouts (grid/cards) and ensuring images are cropped appropriately for mobile and desktop.",
+      "id": "REQ-12",
+      "text": "Generate a new set of brand icon assets from the newly uploaded image `download-2.webp` and use them consistently across the site (favicon in `frontend/index.html`, and the header/footer logo image in `frontend/src/App.tsx`).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-19"
+          "msg-13"
         ],
         "quotes": [
-          "use these images to make the website more attractive"
+          "now use this image as website icon"
         ]
       },
       "acceptanceCriteria": [
-        "All 12 uploaded images are included in the built frontend as static assets (no backend/image fetching).",
-        "Hero section includes at least one of the uploaded tractor/music visuals in a prominent way without harming text readability (e.g., overlay/gradient as needed).",
-        "Each service section (Music Systems, Modification Materials, Electrical Mechanic Services) displays relevant uploaded imagery in a clean responsive layout (no broken aspect ratios, no overflow on mobile).",
-        "All images include English alt text (generic descriptive alt text is OK).",
-        "Page performance is maintained by using resized/optimized variants (no full-resolution originals used directly in main layout where unnecessary)."
+        "`frontend/index.html` references the new generated favicon (32x32) and apple-touch-icon (180x180) under `/assets/generated/`.",
+        "Header and footer in `frontend/src/App.tsx` use the new generated square brand icon under `/assets/generated/`.",
+        "All user-facing text remains in English."
       ]
     },
     {
-      "id": "REQ-10",
-      "text": "Replace the website icon (favicon) with an enhanced version derived from the user-selected uploaded image (the Beniwal Music Center / Beniwal Music Stereo signboard image), and update the header/footer logo to match the new branding image where appropriate.",
+      "id": "REQ-13",
+      "text": "Fix the issue where images are not visible by ensuring all image assets referenced in the React app exist in the deployed build and are referenced via URL-safe paths (no broken image links in hero or section galleries).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-19"
+          "msg-8",
+          "msg-9",
+          "msg-13",
+          "msg-14"
         ],
         "quotes": [
-          "use this as website icon",
-          "use this complete image as icon by some minor changes to make it attractive do it by yourself"
+          "they are not visible",
+          "re upload these according to your knowledge making website interesting and effective , now use this image as website icon",
+          "rebuilt the site"
         ]
       },
       "acceptanceCriteria": [
-        "The HTML head includes favicon links that load the new generated icon assets (e.g., 32x32 favicon + 180x180 apple-touch icon).",
-        "Browser tab/favicon updates correctly after rebuild.",
-        "Header and footer logo render crisply and consistently with the updated brand icon (no stretching; transparent background if applicable)."
+        "In the deployed site, the hero background image renders and the service-section galleries render without broken images.",
+        "Image URLs used by the app are URL-safe and load correctly in production hosting (e.g., avoid unencoded spaces in public asset paths).",
+        "If any optional images are missing at runtime, the UI degrades gracefully (no layout break), and missing images are not shown as broken thumbnails."
       ]
     },
     {
-      "id": "REQ-11",
-      "text": "After the visual updates are complete, add a clear on-page prompt in the Contact section asking the site owner to provide contact information (phone number, address, and business hours) so the placeholders can be replaced later (English text).",
-      "target": "frontend",
+      "id": "REQ-14",
+      "text": "Rebuild/redeploy the site so that the public link resolves successfully (no “Canister ID Not Resolved” error) and the latest assets (including the new icon images) are served.",
+      "target": "unknown",
       "source": {
         "messageIds": [
-          "msg-19"
+          "msg-4",
+          "msg-6",
+          "msg-14"
         ],
         "quotes": [
-          "and after completing this ask me for contact information"
+          "provide me a working link",
+          "🎉 Version 2 has been successfully released!",
+          "rebuilt the site"
         ]
       },
       "acceptanceCriteria": [
-        "Contact section still shows placeholders for Phone/Address/Business Hours.",
-        "A visible English note/callout in the Contact section asks the owner to provide phone, address, and business hours to update the site."
+        "The primary public URL for the site loads the SPA successfully in both mobile and desktop browsers without “Canister ID Not Resolved”.",
+        "After rebuild/redeploy, the favicon/website icon displayed in the browser tab matches the newly uploaded image-derived icon."
       ]
     }
   ],
   "constraints": [
-    "Frontend must keep using static assets (do not route images through the backend).",
-    "Do not edit files under frontend/src/components/ui or other frontend immutable paths listed in SYSTEM_CONTEXT.",
-    "Keep the app as a single-page site with the existing sections and navigation; do not introduce checkout/e-commerce."
+    "Frontend immutable paths must not be edited: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, `frontend/src/components/ui`.",
+    "Backend must remain a single Motoko actor in `backend/main.mo`; only add `backend/migration.mo` if state migration is required."
   ],
   "nonGoals": [
-    "Adding a backend CMS/admin panel for editing contact info.",
-    "Adding authentication or user accounts.",
-    "Implementing image upload functionality inside the app (images are provided out-of-band)."
+    "Adding checkout/e-commerce functionality.",
+    "Adding new authentication providers (only Internet Identity supported).",
+    "Adding new backend features (the backend is currently unused and may remain unchanged)."
   ],
   "imageRequirements": {
     "required": [],
     "edits": [
-      "Enhance and crop for a square brand icon with improved contrast/sharpness (WhatsApp Image 2026-02-06 at 2.51.23 AM (2).jpeg > bmc-icon.dim_512x512.png)",
-      "Create favicon (WhatsApp Image 2026-02-06 at 2.51.23 AM (2).jpeg > favicon-32.dim_32x32.png)",
-      "Create Apple touch icon (WhatsApp Image 2026-02-06 at 2.51.23 AM (2).jpeg > apple-touch-icon.dim_180x180.png)",
-      "Create optimized hero background image (WhatsApp Image 2026-02-06 at 2.51.21 AM (2).jpeg > hero-photo.dim_1600x900.jpg)",
-      "Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.21 AM (1).jpeg > music-systems-photo.dim_1200x800.jpg)",
-      "Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.22 AM.jpeg > speaker-box-photo.dim_1200x800.jpg)",
-      "Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.23 AM (1).jpeg > lighting-shelf-photo.dim_1200x800.jpg)",
-      "Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.22 AM (1).jpeg > modification-parts-collage.dim_1200x800.jpg)",
-      "Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.23 AM.jpeg > exhaust-parts-photo.dim_1200x800.jpg)",
-      "Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.20 AM.jpeg > tractor-field-photo.dim_1200x800.jpg)"
+      "Enhance/crop to a clean square brand mark with improved contrast and legibility (download-2.webp > bmc-icon.dim_512x512.png)",
+      "Create favicon from the same source (download-2.webp > favicon-32.dim_32x32.png)",
+      "Create Apple touch icon from the same source (download-2.webp > apple-touch-icon.dim_180x180.png)"
     ]
   },
   "userProfileUpdate": {
     "goalsToAdd": [],
     "goalsToRemove": [],
-    "preferencesToAdd": [
-      "Use uploaded images to enhance the site and set a custom favicon derived from the shop signboard image; keep user-facing text in English."
-    ],
+    "preferencesToAdd": [],
     "preferencesToRemove": [],
     "miscToAdd": [],
     "miscToRemove": [],

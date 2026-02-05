@@ -1,14 +1,18 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
+  "projectStateVersion": 7,
   "summary": "Create a website for the shop \"Beniwal Music Center\" featuring information about tractor music systems, tractor modification materials, electrical mechanic services, and contact details (more info to be added later).",
   "architectural_notes": [
     "Support replacing the site favicon/website icon with a user-provided image (with minor visual enhancements).",
-    "Allow flexible placement of user-provided images across site sections to improve visual appeal."
+    "Allow flexible placement of user-provided images across site sections to improve visual appeal.",
+    "Deployment target is an Internet Computer (icp0.io) canister; the shared link must resolve to a valid canister ID and serve static assets correctly."
   ],
-  "known_issues": [],
-  "isFixRequest": false,
-  "imageRequirements": "## Edit Images\n- Enhance and crop for a square brand icon with improved contrast/sharpness (WhatsApp Image 2026-02-06 at 2.51.23 AM (2).jpeg > bmc-icon.dim_512x512.png)\n- Create favicon (WhatsApp Image 2026-02-06 at 2.51.23 AM (2).jpeg > favicon-32.dim_32x32.png)\n- Create Apple touch icon (WhatsApp Image 2026-02-06 at 2.51.23 AM (2).jpeg > apple-touch-icon.dim_180x180.png)\n- Create optimized hero background image (WhatsApp Image 2026-02-06 at 2.51.21 AM (2).jpeg > hero-photo.dim_1600x900.jpg)\n- Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.21 AM (1).jpeg > music-systems-photo.dim_1200x800.jpg)\n- Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.22 AM.jpeg > speaker-box-photo.dim_1200x800.jpg)\n- Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.23 AM (1).jpeg > lighting-shelf-photo.dim_1200x800.jpg)\n- Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.22 AM (1).jpeg > modification-parts-collage.dim_1200x800.jpg)\n- Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.23 AM.jpeg > exhaust-parts-photo.dim_1200x800.jpg)\n- Create optimized section image (WhatsApp Image 2026-02-06 at 2.51.20 AM.jpeg > tractor-field-photo.dim_1200x800.jpg)",
+  "known_issues": [
+    "Deployed site link returns “Canister ID Not Resolved” on both mobile and desktop for https://beni-wyal-music-center.icp0.io/ (gateway cannot determine destination canister).",
+    "Uploaded images and favicon/icon are reported as not visible on the deployed site; user requested re-upload/rebuild to restore visibility."
+  ],
+  "isFixRequest": true,
+  "imageRequirements": "## Edit Images\n- Enhance/crop to a clean square brand mark with improved contrast and legibility (download-2.webp > bmc-icon.dim_512x512.png)\n- Create favicon from the same source (download-2.webp > favicon-32.dim_32x32.png)\n- Create Apple touch icon from the same source (download-2.webp > apple-touch-icon.dim_180x180.png)",
   "existing_features": [
     {
       "id": "feature-create-a-responsive-website-titled-beniwal-music-center-with-a-clear-home-landing-section-that-introduces-the-shop-and-summarizes-the-main-offerings",
@@ -95,6 +99,30 @@
       "title": "After the visual updates are complete, add a clear on-page prompt in the Contact section asking the site owner to provide contact information (phone number, address, and business hours) so the placeholders can be replaced later (English text).",
       "reqIds": [
         "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-a-new-set-of-brand-icon-assets-from-the-newly-uploaded-image-download-2-webp-and-use-them-consistently-across-the-site-favicon-in-frontend-index-html-and-the-header-footer-logo-image-in-frontend-src-app-tsx",
+      "title": "Generate a new set of brand icon assets from the newly uploaded image `download-2.webp` and use them consistently across the site (favicon in `frontend/index.html`, and the header/footer logo image in `frontend/src/App.tsx`).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-issue-where-images-are-not-visible-by-ensuring-all-image-assets-referenced-in-the-react-app-exist-in-the-deployed-build-and-are-referenced-via-url-safe-paths-no-broken-image-links-in-hero-or-section-galleries",
+      "title": "Fix the issue where images are not visible by ensuring all image assets referenced in the React app exist in the deployed build and are referenced via URL-safe paths (no broken image links in hero or section galleries).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-rebuild-redeploy-the-site-so-that-the-public-link-resolves-successfully-no-canister-id-not-resolved-error-and-the-latest-assets-including-the-new-icon-images-are-served",
+      "title": "Rebuild/redeploy the site so that the public link resolves successfully (no “Canister ID Not Resolved” error) and the latest assets (including the new icon images) are served.",
+      "reqIds": [
+        "REQ-14"
       ],
       "version": 1
     }

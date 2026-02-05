@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-the-12-uploaded-images-as-optimized-static-assets-and-place-them-throughout-the-existing-single-page-site-to-make-it-more-visually-attractive-hero-relevant-service-sections-using-responsive-layouts-grid-cards-and-ensuring-images-are-cropped-appropriately-for-mobile-and-desktop",
-      "featureTitle": "Add the 12 uploaded images as optimized static assets and place them throughout the existing single-page site to make it more visually attractive (hero + relevant service sections), using responsive layouts (grid/cards) and ensuring images are cropped appropriately for mobile and desktop.",
+      "featureId": "feature-generate-a-new-set-of-brand-icon-assets-from-the-newly-uploaded-image-download-2-webp-and-use-them-consistently-across-the-site-favicon-in-frontend-index-html-and-the-header-footer-logo-image-in-frontend-src-app-tsx",
+      "featureTitle": "Generate a new set of brand icon assets from the newly uploaded image `download-2.webp` and use them consistently across the site (favicon in `frontend/index.html`, and the header/footer logo image in `frontend/src/App.tsx`).",
       "files": [
         "frontend/src/App.tsx"
       ],
@@ -15,16 +15,16 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-9"
+        "REQ-12"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-replace-the-website-icon-favicon-with-an-enhanced-version-derived-from-the-user-selected-uploaded-image-the-beniwal-music-center-beniwal-music-stereo-signboard-image-and-update-the-header-footer-logo-to-match-the-new-branding-image-where-appropriate",
-      "featureTitle": "Replace the website icon (favicon) with an enhanced version derived from the user-selected uploaded image (the Beniwal Music Center / Beniwal Music Stereo signboard image), and update the header/footer logo to match the new branding image where appropriate.",
+      "featureId": "feature-fix-the-issue-where-images-are-not-visible-by-ensuring-all-image-assets-referenced-in-the-react-app-exist-in-the-deployed-build-and-are-referenced-via-url-safe-paths-no-broken-image-links-in-hero-or-section-galleries",
+      "featureTitle": "Fix the issue where images are not visible by ensuring all image assets referenced in the React app exist in the deployed build and are referenced via URL-safe paths (no broken image links in hero or section galleries).",
       "files": [
-        "frontend/index.html",
-        "frontend/src/App.tsx"
+        "frontend/src/App.tsx",
+        "frontend/src/components/SafeImage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -34,16 +34,14 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-10"
+        "REQ-13"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-after-the-visual-updates-are-complete-add-a-clear-on-page-prompt-in-the-contact-section-asking-the-site-owner-to-provide-contact-information-phone-number-address-and-business-hours-so-the-placeholders-can-be-replaced-later-english-text",
-      "featureTitle": "After the visual updates are complete, add a clear on-page prompt in the Contact section asking the site owner to provide contact information (phone number, address, and business hours) so the placeholders can be replaced later (English text).",
-      "files": [
-        "frontend/src/App.tsx"
-      ],
+      "featureId": "feature-rebuild-redeploy-the-site-so-that-the-public-link-resolves-successfully-no-canister-id-not-resolved-error-and-the-latest-assets-including-the-new-icon-images-are-served",
+      "featureTitle": "Rebuild/redeploy the site so that the public link resolves successfully (no “Canister ID Not Resolved” error) and the latest assets (including the new icon images) are served.",
+      "files": [],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
@@ -52,7 +50,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-11"
+        "REQ-14"
       ],
       "confidence": "high"
     }

@@ -1,67 +1,65 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-05T21:38:31.736Z",
-  "summary": "Diff updates the SPA’s React app and HTML head to reference new static image/icon assets and adds a Contact-section prompt (per file summary). However, no new image files were added in the diff, so the requested 12 optimized images and generated favicon/icon assets cannot be confirmed as actually included in the build output.",
+  "generatedAt": "2026-02-05T22:08:40.966Z",
+  "summary": "Diff adds a SafeImage component and updates App.tsx to use a new generated brand icon path. It also claims index.html favicon updates and broader styling/theme changes, but the diff summary does not provide evidence that the new icon files were actually added, that all broken images were fixed end-to-end, or that the redeploy/canister-resolution issue was addressed.",
   "missing_requirements": [
     {
-      "id": "REQ-9",
-      "requirement": "Add the 12 uploaded images as optimized static assets and place them throughout the existing single-page site (hero + service sections) with responsive/cropped layouts and alt text.",
-      "reason": "The code references generated assets and the summary mentions galleries, but the diff shows zero added files, and there is no evidence the 12 optimized images were actually added under static assets (e.g., frontend/public/assets/generated). Without asset additions, the acceptance criterion that all 12 images are included as static assets cannot be verified.",
+      "id": "REQ-12",
+      "requirement": "Generate new brand icon assets from download-2.webp and reference them consistently (favicon + apple-touch-icon in frontend/index.html under /assets/generated/; header/footer logo in App.tsx uses generated square icon).",
+      "reason": "App.tsx references /assets/generated/bmc-icon.dim_512x512.png, but the diff summary does not show the actual generated image assets being added under frontend/public/assets/generated/, and the App.tsx snippet only shows the header logo (no evidence for footer logo update). index.html changes are only described in a secondary summary file, not shown as direct diff evidence.",
       "evidence": [
-        "<file-diff>: Added: 0",
-        "frontend/src/App.tsx (truncated)",
-        "frontend-file-summaries.txt (mentions galleries but not asset file additions)"
+        "frontend/src/App.tsx",
+        "frontend-file-summaries.txt"
       ]
     },
     {
-      "id": "REQ-10",
-      "requirement": "Replace the website icon (favicon) with enhanced generated assets and update header/footer logo to match the new branding image.",
-      "reason": "index.html links to the new favicon and apple-touch-icon paths, and App.tsx references a new logo image path, but no generated icon/image files were added in the diff, so the new favicon/icon/logo assets themselves are not evidenced as present.",
+      "id": "REQ-13",
+      "requirement": "Fix invisible/broken images: ensure all referenced assets exist in deployed build, use URL-safe paths, and degrade gracefully if optional images are missing (no broken thumbnails).",
+      "reason": "SafeImage provides graceful degradation, but the diff summary does not show concrete updates to the hero background and service-section gallery image paths or confirmation that all referenced assets exist and are URL-safe. App.tsx where those images live is truncated and the actual image path changes are not evidenced.",
       "evidence": [
-        "frontend/index.html (references /assets/generated/favicon-32.dim_32x32.png and /assets/generated/apple-touch-icon.dim_180x180.png)",
-        "frontend/src/App.tsx (references /assets/generated/bmc-icon.dim_512x512.png)",
-        "<file-diff>: Added: 0"
+        "frontend/src/components/SafeImage.tsx",
+        "frontend/src/App.tsx",
+        "frontend-file-summaries.txt"
       ]
     },
     {
-      "id": "REQ-11",
-      "requirement": "Contact section still shows placeholders for Phone/Address/Business Hours, plus an English note asking the owner to provide phone, address, and business hours.",
-      "reason": "The diff summary indicates an owner prompt alert was added, but the Contact section content is not visible in the truncated App.tsx snippet, so retention of the Phone/Address/Business Hours placeholders cannot be confirmed from provided evidence.",
+      "id": "REQ-14",
+      "requirement": "Rebuild/redeploy so the public link resolves (no “Canister ID Not Resolved”) and latest assets (including new icons) are served.",
+      "reason": "No deployment/rebuild configuration, canister configuration, or hosting changes are shown. The diff contains only frontend code and summary metadata; nothing evidences addressing canister ID resolution or redeployment steps.",
       "evidence": [
-        "frontend/src/App.tsx (truncated)",
-        "frontend-file-summaries.txt (mentions “contact section with owner prompt alert”)"
+        "<file-diff> (no deploy/canister-related files shown)"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Global redesign of color palette/design tokens (warm industrial OKLCH) across light/dark mode.",
-      "reason": "BuildRequest focuses on adding/using uploaded photos and updating favicon/logo plus a Contact prompt; it does not request a theme/token overhaul.",
+      "description": "Introduced a new SafeImage component with placeholder UI text ('Image unavailable') and loading/error handling.",
+      "reason": "Not explicitly requested as a standalone feature; REQ-13 asks for graceful degradation, but the specific component implementation and placeholder UI are additional behavior beyond the stated acceptance criteria.",
       "evidence": [
-        "frontend-file-summaries.txt (describes frontend/src/index.css changes)"
+        "frontend/src/components/SafeImage.tsx"
       ]
     },
     {
-      "description": "Tailwind configuration changes (Inter font family and extended custom design tokens).",
-      "reason": "Not requested in the BuildRequest; appears as additional styling work beyond image/icon integration.",
+      "description": "Changed/added a new global design theme (warm industrial OKLCH palette) and Tailwind config adjustments (Inter font, custom design tokens).",
+      "reason": "Not requested by REQ-12/13/14; the BuildRequest is focused on icons, broken images, and redeploy/canister resolution, and also lists constraints/non-goals rather than a redesign request.",
       "evidence": [
-        "frontend-file-summaries.txt (describes frontend/tailwind.config.js changes)"
+        "frontend-file-summaries.txt"
       ]
     },
     {
-      "description": "SEO-oriented page title change in HTML head.",
-      "reason": "Not requested; BuildRequest specifies favicon/icon updates and image placement, not SEO/title changes.",
+      "description": "Updated HTML page title for SEO.",
+      "reason": "Not requested by REQ-12/13/14.",
       "evidence": [
-        "frontend/index.html (<title> updated)"
+        "frontend-file-summaries.txt"
       ]
     }
   ],
-  "confidence": 0.66,
+  "confidence": 0.6,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/index.html",
     "frontend/src/App.tsx",
+    "frontend/src/components/SafeImage.tsx",
     "project_state.json"
   ]
 }

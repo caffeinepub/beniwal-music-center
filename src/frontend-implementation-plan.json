@@ -1,169 +1,132 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Integrate uploaded photos across single-page site and update favicon/branding",
+  "title": "Restore site images, update brand icon assets, and ensure deploy-ready static asset wiring",
   "requirements": [
     {
-      "id": "REQ-9",
-      "summary": "Add all 12 uploaded images as optimized static assets and place them across hero and service sections with responsive, well-cropped layouts and alt text.",
+      "id": "REQ-12",
+      "summary": "Generate and wire new brand icon assets from download-2.webp for favicon and header/footer logo usage.",
       "acceptanceCriteria": [
-        "All 12 uploaded images are included in the built frontend as static assets (no backend/image fetching).",
-        "Hero section includes at least one of the uploaded tractor/music visuals in a prominent way without harming text readability (e.g., overlay/gradient as needed).",
-        "Each service section (Music Systems, Modification Materials, Electrical Mechanic Services) displays relevant uploaded imagery in a clean responsive layout (no broken aspect ratios, no overflow on mobile).",
-        "All images include English alt text (generic descriptive alt text is OK).",
-        "Page performance is maintained by using resized/optimized variants (no full-resolution originals used directly in main layout where unnecessary)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/public/assets/generated/hero-photo.dim_1600x900.jpg",
-          "operation": "create",
-          "description": "Add generated optimized hero background image as a static asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/music-systems-photo.dim_1200x800.jpg",
-          "operation": "create",
-          "description": "Add generated optimized Music Systems section image as a static asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/speaker-box-photo.dim_1200x800.jpg",
-          "operation": "create",
-          "description": "Add generated optimized Music Systems-related image (speaker box) as a static asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/lighting-shelf-photo.dim_1200x800.jpg",
-          "operation": "create",
-          "description": "Add generated optimized section image (lighting shelf) as a static asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/modification-parts-collage.dim_1200x800.jpg",
-          "operation": "create",
-          "description": "Add generated optimized Modifications section collage image as a static asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/exhaust-parts-photo.dim_1200x800.jpg",
-          "operation": "create",
-          "description": "Add generated optimized Modifications-related image (exhaust parts) as a static asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/tractor-field-photo.dim_1200x800.jpg",
-          "operation": "create",
-          "description": "Add generated optimized tractor field photo as a static asset for cross-section visual variety."
-        },
-        {
-          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.20 AM.jpeg",
-          "operation": "create",
-          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
-        },
-        {
-          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM (1).jpeg",
-          "operation": "create",
-          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
-        },
-        {
-          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM (2).jpeg",
-          "operation": "create",
-          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
-        },
-        {
-          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM.jpeg",
-          "operation": "create",
-          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
-        },
-        {
-          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM (1)-1.jpeg",
-          "operation": "create",
-          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
-        },
-        {
-          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM (1).jpeg",
-          "operation": "create",
-          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
-        },
-        {
-          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM.jpeg",
-          "operation": "create",
-          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
-        },
-        {
-          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.23 AM (1).jpeg",
-          "operation": "create",
-          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
-        },
-        {
-          "path": "frontend/public/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.23 AM.jpeg",
-          "operation": "create",
-          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
-        },
-        {
-          "path": "frontend/public/assets/uploads/download.webp",
-          "operation": "create",
-          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
-        },
-        {
-          "path": "frontend/public/assets/uploads/download-1.webp",
-          "operation": "create",
-          "description": "Add the uploaded original image as a static asset (use only in non-critical/secondary placements if no optimized variant is available)."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Update the existing single-page hero and the three service sections to incorporate the uploaded/static images using responsive grid/card layouts, safe cropping (object-cover), and English alt text; ensure the hero uses frontend/public/assets/generated/hero-photo.dim_1600x900.jpg with an overlay/gradient to preserve text readability; distribute all 12 uploaded images across hero + service sections (and optional small in-section galleries) while keeping mobile layouts free of overflow and maintaining performance via the generated optimized variants where available."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Adjust global styles only as needed to support consistent image presentation (e.g., reusable utility classes for safe aspect-ratio cropping/overlays) without introducing new global stylesheet paths."
-        }
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "summary": "Replace favicon with enhanced generated icon derived from the signboard image and update header/footer logo to match the new brand icon.",
-      "acceptanceCriteria": [
-        "The HTML head includes favicon links that load the new generated icon assets (e.g., 32x32 favicon + 180x180 apple-touch icon).",
-        "Browser tab/favicon updates correctly after rebuild.",
-        "Header and footer logo render crisply and consistently with the updated brand icon (no stretching; transparent background if applicable)."
+        "`frontend/index.html` references the new generated favicon (32x32) and apple-touch-icon (180x180) under `/assets/generated/`.",
+        "Header and footer in `frontend/src/App.tsx` use the new generated square brand icon under `/assets/generated/`.",
+        "All user-facing text remains in English."
       ],
       "file_operations": [
         {
           "path": "frontend/public/assets/generated/bmc-icon.dim_512x512.png",
           "operation": "create",
-          "description": "Add the generated square brand icon asset derived from the signboard image."
+          "description": "Add the newly generated square brand mark derived from `download-2.webp` (enhanced contrast/legibility) for use as the site logo in the React UI."
         },
         {
           "path": "frontend/public/assets/generated/favicon-32.dim_32x32.png",
           "operation": "create",
-          "description": "Add the generated 32x32 favicon asset."
+          "description": "Add the newly generated 32x32 favicon derived from `download-2.webp` for browser tab icon usage."
         },
         {
           "path": "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
           "operation": "create",
-          "description": "Add the generated Apple touch icon asset."
+          "description": "Add the newly generated 180x180 Apple touch icon derived from `download-2.webp` for iOS home screen usage."
         },
         {
           "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Update the HTML head to include favicon and apple-touch-icon link tags referencing frontend/public/assets/generated/favicon-32.dim_32x32.png and frontend/public/assets/generated/apple-touch-icon.dim_180x180.png, ensuring the new icons load after rebuild."
+          "description": "Ensure the favicon and apple-touch-icon link tags reference the new generated files under `frontend/public/assets/generated/` and that paths remain consistent for production builds."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Replace the header and footer logo image usage to reference frontend/public/assets/generated/bmc-icon.dim_512x512.png, ensuring crisp rendering (no stretching) and consistent sizing across breakpoints."
+          "description": "Ensure the header and footer logo `<img>` uses `bmc-icon.dim_512x512.png` under `frontend/public/assets/generated/` and remove/replace any older logo references if present."
         }
       ]
     },
     {
-      "id": "REQ-11",
-      "summary": "Add an on-page English prompt in the Contact section asking the owner to provide phone, address, and business hours while keeping placeholders.",
+      "id": "REQ-13",
+      "summary": "Fix broken/non-visible images by ensuring assets exist in the built output, use URL-safe paths, and gracefully handle missing optional images.",
       "acceptanceCriteria": [
-        "Contact section still shows placeholders for Phone/Address/Business Hours.",
-        "A visible English note/callout in the Contact section asks the owner to provide phone, address, and business hours to update the site."
+        "In the deployed site, the hero background image renders and the service-section galleries render without broken images.",
+        "Image URLs used by the app are URL-safe and load correctly in production hosting (e.g., avoid unencoded spaces in public asset paths).",
+        "If any optional images are missing at runtime, the UI degrades gracefully (no layout break), and missing images are not shown as broken thumbnails."
       ],
       "file_operations": [
         {
+          "path": "frontend/src/components/SafeImage.tsx",
+          "operation": "create",
+          "description": "Create a small React component wrapper around `<img>` that can hide itself or swap to an optional fallback when the image fails to load, preventing broken thumbnails and layout breaks."
+        },
+        {
+          "path": "frontend/public/assets/generated/bmc-hero-banner.dim_1600x600.png",
+          "operation": "create",
+          "description": "Ensure the hero background image asset exists at this exact path in the deployed build (copy from the existing project asset set if needed)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg",
+          "operation": "create",
+          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.20 AM.jpeg` into public uploads so it is included in the deployed build."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg",
+          "operation": "create",
+          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.21 AM (1).jpeg` into public uploads so it is included in the deployed build."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg",
+          "operation": "create",
+          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.21 AM (2).jpeg` into public uploads so it is included in the deployed build."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg",
+          "operation": "create",
+          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.21 AM.jpeg` into public uploads so it is included in the deployed build."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg",
+          "operation": "create",
+          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.22 AM.jpeg` into public uploads so it is included in the deployed build."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg",
+          "operation": "create",
+          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.22 AM (1).jpeg` into public uploads so it is included in the deployed build."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg",
+          "operation": "create",
+          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.22 AM (1)-1.jpeg` into public uploads so it is included in the deployed build."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg",
+          "operation": "create",
+          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.23 AM (1).jpeg` into public uploads so it is included in the deployed build."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg",
+          "operation": "create",
+          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.23 AM.jpeg` into public uploads so it is included in the deployed build."
+        },
+        {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Add a clearly visible English callout/note within the existing Contact section prompting the site owner to provide phone number, address, and business hours, while keeping the current placeholders intact."
+          "description": "Update hero and gallery image `src` values to point to assets that exist in `frontend/public/assets/...` using URL-safe filenames (no spaces/parentheses), and render images via `SafeImage` so missing optional images do not show as broken thumbnails."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Ensure frontend build is deploy-ready so the public link loads the latest SPA assets and displays the new favicon.",
+      "acceptanceCriteria": [
+        "The primary public URL for the site loads the SPA successfully in both mobile and desktop browsers without “Canister ID Not Resolved”.",
+        "After rebuild/redeploy, the favicon/website icon displayed in the browser tab matches the newly uploaded image-derived icon."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Harden deploy behavior by ensuring static asset references (favicons and the module script path) are correct for production hosting, and add a `<base>` configuration if needed so the SPA resolves asset URLs reliably after redeploy."
+        },
+        {
+          "path": "frontend/public/assets/generated/favicon-32.dim_32x32.png",
+          "operation": "modify",
+          "description": "Verify the generated favicon file content matches the newly uploaded image-derived icon and is the one served after rebuild/redeploy (replace file contents if necessary)."
         }
       ]
     }

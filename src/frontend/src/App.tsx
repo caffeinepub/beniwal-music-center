@@ -1,6 +1,7 @@
 import { Music, Wrench, Zap, Phone, MapPin, Clock, Menu, X, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { SafeImage } from '@/components/SafeImage';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,7 +20,7 @@ function App() {
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-3">
-            <img 
+            <SafeImage 
               src="/assets/generated/bmc-icon.dim_512x512.png" 
               alt="Beniwal Music Center Logo" 
               className="h-10 w-10 object-contain"
@@ -114,8 +115,8 @@ function App() {
         {/* Hero Section */}
         <section id="home" className="relative overflow-hidden">
           <div className="absolute inset-0">
-            <img 
-              src="/assets/generated/hero-photo.dim_1600x900.jpg" 
+            <SafeImage 
+              src="/assets/generated/bmc-hero-banner.dim_1600x600.png" 
               alt="Tractor with custom music system in field" 
               className="w-full h-full object-cover"
             />
@@ -157,45 +158,51 @@ function App() {
               {/* Image Gallery */}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 <div className="rounded-xl overflow-hidden shadow-lg">
-                  <img 
-                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM (2).jpeg" 
+                  <SafeImage 
+                    src="/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg" 
                     alt="Tractor with illuminated music system at night" 
                     className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                    hideOnError
                   />
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg">
-                  <img 
-                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM (1).jpeg" 
+                  <SafeImage 
+                    src="/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg" 
                     alt="Custom tractor speaker installation" 
                     className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                    hideOnError
                   />
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg">
-                  <img 
-                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM.jpeg" 
+                  <SafeImage 
+                    src="/assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg" 
                     alt="Premium speaker box with LED lighting" 
                     className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                    hideOnError
                   />
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg">
-                  <img 
-                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.21 AM.jpeg" 
+                  <SafeImage 
+                    src="/assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg" 
                     alt="Tractor with custom audio setup" 
                     className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                    hideOnError
                   />
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg">
-                  <img 
-                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.20 AM.jpeg" 
+                  <SafeImage 
+                    src="/assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg" 
                     alt="Tractor with music system in field" 
                     className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                    hideOnError
                   />
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg">
-                  <img 
+                  <SafeImage 
                     src="/assets/generated/speaker-box-photo.dim_1200x800.jpg" 
                     alt="Professional speaker box system" 
                     className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                    hideOnError
                   />
                 </div>
               </div>
@@ -247,31 +254,35 @@ function App() {
               {/* Image Gallery */}
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <div className="rounded-xl overflow-hidden shadow-lg">
-                  <img 
-                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM (1).jpeg" 
+                  <SafeImage 
+                    src="/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg" 
                     alt="Tractor modification parts and accessories" 
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                    hideOnError
                   />
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg">
-                  <img 
-                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.22 AM (1)-1.jpeg" 
+                  <SafeImage 
+                    src="/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg" 
                     alt="LED lights and modification materials" 
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                    hideOnError
                   />
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg">
-                  <img 
-                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.23 AM (1).jpeg" 
+                  <SafeImage 
+                    src="/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg" 
                     alt="Tractor hood shelves and accessories" 
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                    hideOnError
                   />
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg">
-                  <img 
-                    src="/assets/uploads/WhatsApp Image 2026-02-06 at 2.51.23 AM.jpeg" 
+                  <SafeImage 
+                    src="/assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg" 
                     alt="Exhaust pipes and modification parts" 
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                    hideOnError
                   />
                 </div>
               </div>
@@ -429,7 +440,7 @@ function App() {
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <img 
+              <SafeImage 
                 src="/assets/generated/bmc-icon.dim_512x512.png" 
                 alt="Beniwal Music Center Logo" 
                 className="h-8 w-8 object-contain"
