@@ -1,0 +1,184 @@
+{
+  "kind": "build_request",
+  "title": "Marketing website for “Beniwal Music Center” (tractor music systems, modifications, electrician mechanic, contact)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a responsive website titled “Beniwal Music Center” with a clear home/landing section that introduces the shop and summarizes the main offerings.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-8"
+        ],
+        "quotes": [
+          "create a website for my shop of music system for tractors with title \" Beniwal Music Center \"",
+          "Create a website titled \"Beniwal Music Center\" with:\n• A home page describing the shop"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Page shows the title “Beniwal Music Center” prominently.",
+        "Landing section includes a short description of the shop in English.",
+        "Layout is responsive (mobile + desktop) and visually coherent."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a dedicated section for “Tractor Music Systems” describing the products/services offered (informational content only; no checkout required).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-8"
+        ],
+        "quotes": [
+          "music system for tractors",
+          "• A section for tractor music systems"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A section labeled “Tractor Music Systems” is present and easy to find via scrolling/navigation.",
+        "Section contains English descriptive text (not placeholder lorem ipsum)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add a dedicated section for “Tractor Modification Materials” and include messaging that the materials are available at reasonable prices.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-8"
+        ],
+        "quotes": [
+          "also we sell tractor modification materials at reasonable price",
+          "• A section for tractor modification materials"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A section labeled “Tractor Modification Materials” is present.",
+        "Section explicitly mentions “reasonable prices” (or equivalent phrasing) in English."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a dedicated section describing “Electrical Mechanic Services” and clearly state that an electrical mechanic is available.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2",
+          "msg-8"
+        ],
+        "quotes": [
+          "also electricial mechanic is available",
+          "• A section for electrical mechanic services"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A section labeled “Electrical Mechanic Services” (or very similar) is present.",
+        "Section clearly states availability of an electrical mechanic in English."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add a “Contact” section with contact information fields that can be filled in later (use clear placeholders such as phone number, address, and business hours).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "and a section for contact information further information will be provide later on"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A section labeled “Contact” is present.",
+        "Contact section includes placeholders for at least: Phone, Address, and Hours.",
+        "Placeholders are clearly marked as “To be added” / “Coming soon” (or similar), not fake data."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add simple navigation (e.g., header links) to jump to: Home, Tractor Music Systems, Tractor Modification Materials, Electrical Mechanic Services, and Contact.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "A home page describing the shop\n• A section for tractor music systems\n• A section for tractor modification materials\n• A section for electrical mechanic services\n• A contact section"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Navigation is visible on desktop and usable on mobile (e.g., stacked or menu).",
+        "Clicking each nav item scrolls/jumps to the correct section."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Apply a cohesive visual theme across the site (colors, typography, spacing, and section styling) suitable for a tractor/automotive shop brand; avoid a blue/purple-dominant palette.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "create a website for my shop of music system for tractors with title \" Beniwal Music Center \""
+        ]
+      },
+      "acceptanceCriteria": [
+        "Typography, buttons/links, and section styling look consistent across the page.",
+        "Primary color palette is not predominantly blue/purple.",
+        "Design feels appropriate for an automotive/tractor services shop (clean, bold, practical)."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add generated static image assets (logo + hero banner) to the site and store them under frontend/public/assets/generated.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "create a website for my shop of music system for tractors with title \" Beniwal Music Center \""
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are present under frontend/public/assets/generated and are referenced by the UI.",
+        "Logo is displayed in the header/hero area.",
+        "Hero/banner image is displayed in the landing section without layout shift or distortion."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use English for any user-facing text.",
+    "Do not edit files under frontend/src/components/ui or other immutable paths defined by the template."
+  ],
+  "nonGoals": [
+    "E-commerce/checkout/cart functionality.",
+    "Online appointment booking.",
+    "Real-time chat or messaging features.",
+    "Third-party authentication beyond Internet Identity."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Logo mark + wordmark reading “Beniwal Music Center”, bold automotive/tractor-shop style, high contrast (bmc-logo.dim_512x512.png)",
+      "Wide hero banner illustration featuring a tractor silhouette and speakers/audio theme, warm rugged palette (bmc-hero-banner.dim_1600x600.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "User-facing text must be English."
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

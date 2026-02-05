@@ -1,0 +1,14 @@
+{
+  "backend/main.mo": "Empty Motoko actor with no exposed methods.",
+  "feature_evidence.json": "Feature report mapping website requirements to frontend files and components.",
+  "frontend-file-summaries.txt": "Contains short descriptions of main frontend files including App.tsx, global styles, and Tailwind config.",
+  "frontend/index.css": "Tailwind base stylesheet defining OKLCH design tokens for light and dark modes and applying global styles.",
+  "frontend/index.html": "Basic HTML shell that loads the React app into a root div and imports main.tsx.",
+  "frontend/src/App.tsx": "React single-page layout with sticky navigation, hero header, service sections, contact section, and responsive mobile menu.",
+  "frontend/src/hooks/useActor.ts": "React hook that creates and manages an authenticated or anonymous backend actor, refreshing on identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Internet Identity context provider and hook handling login, logout, identity loading, and auth-client configuration.",
+  "frontend/src/index.css": "Global Tailwind stylesheet defining warm industrial color palette and dark mode tokens with smooth scrolling.",
+  "frontend/src/main.tsx": "App bootstrap that mounts React, initializes react-query, wraps with InternetIdentityProvider, and loads styles.",
+  "frontend/tailwind.config.js": "Configures Tailwind with dark mode, content paths, extended theme settings (colors, fonts, animations), and plugins for typography, container queries, and animations.",
+  "project_state.json": "Defines the project’s state, including versioning, required images, and a list of implemented features for the Beniwal Music Center website."
+}

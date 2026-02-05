@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Create a website for the shop \"Beniwal Music Center\" featuring information about tractor music systems, tractor modification materials, electrical mechanic services, and contact details (more info to be added later).",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Logo mark + wordmark reading “Beniwal Music Center”, bold automotive/tractor-shop style, high contrast (bmc-logo.dim_512x512.png)\n- Wide hero banner illustration featuring a tractor silhouette and speakers/audio theme, warm rugged palette (bmc-hero-banner.dim_1600x600.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-responsive-website-titled-beniwal-music-center-with-a-clear-home-landing-section-that-introduces-the-shop-and-summarizes-the-main-offerings",
+      "title": "Create a responsive website titled “Beniwal Music Center” with a clear home/landing section that introduces the shop and summarizes the main offerings.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-dedicated-section-for-tractor-music-systems-describing-the-products-services-offered-informational-content-only-no-checkout-required",
+      "title": "Add a dedicated section for “Tractor Music Systems” describing the products/services offered (informational content only; no checkout required).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-dedicated-section-for-tractor-modification-materials-and-include-messaging-that-the-materials-are-available-at-reasonable-prices",
+      "title": "Add a dedicated section for “Tractor Modification Materials” and include messaging that the materials are available at reasonable prices.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-dedicated-section-describing-electrical-mechanic-services-and-clearly-state-that-an-electrical-mechanic-is-available",
+      "title": "Add a dedicated section describing “Electrical Mechanic Services” and clearly state that an electrical mechanic is available.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-contact-section-with-contact-information-fields-that-can-be-filled-in-later-use-clear-placeholders-such-as-phone-number-address-and-business-hours",
+      "title": "Add a “Contact” section with contact information fields that can be filled in later (use clear placeholders such as phone number, address, and business hours).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-simple-navigation-e-g-header-links-to-jump-to-home-tractor-music-systems-tractor-modification-materials-electrical-mechanic-services-and-contact",
+      "title": "Add simple navigation (e.g., header links) to jump to: Home, Tractor Music Systems, Tractor Modification Materials, Electrical Mechanic Services, and Contact.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-visual-theme-across-the-site-colors-typography-spacing-and-section-styling-suitable-for-a-tractor-automotive-shop-brand-avoid-a-blue-purple-dominant-palette",
+      "title": "Apply a cohesive visual theme across the site (colors, typography, spacing, and section styling) suitable for a tractor/automotive shop brand; avoid a blue/purple-dominant palette.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-image-assets-logo-hero-banner-to-the-site-and-store-them-under-frontend-public-assets-generated",
+      "title": "Add generated static image assets (logo + hero banner) to the site and store them under frontend/public/assets/generated.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build a website titled \"Beniwal Music Center\"",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add a home page describing the shop and its offerings",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add a section for tractor music systems products/services",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add a section for tractor modification materials (reasonable price messaging)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Add a section describing electrical mechanic availability/services",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add a contact information section",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Beniwal Music Center",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

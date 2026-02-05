@@ -1,0 +1,83 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-05T21:02:40.887Z",
+  "summary": "Diff adds a single-page React app with sticky header navigation, warm industrial theme tokens, and references a generated logo image. However, the required generated image assets are not present in the diff, and several required section labels/placeholders cannot be confirmed (and nav labels appear to not match the required wording). The diff also introduces Internet Identity/auth and actor hooks that were not requested for a marketing site.",
+  "missing_requirements": [
+    {
+      "id": "REQ-2",
+      "requirement": "Add a dedicated section for “Tractor Music Systems” labeled as such and easy to find via navigation/scrolling.",
+      "reason": "Navigation label shown is “Music Systems”, not “Tractor Music Systems”; the actual section heading cannot be verified due to truncation.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Add a dedicated section for “Tractor Modification Materials” and explicitly mention reasonable prices.",
+      "reason": "Navigation label shown is “Modifications”, not “Tractor Modification Materials”; the required “reasonable prices” wording is not evidenced in the provided diff snippet/summary.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Add a dedicated section for “Electrical Mechanic Services” clearly stating an electrical mechanic is available.",
+      "reason": "Navigation label shown is “Mechanic Services”, not “Electrical Mechanic Services”; the required statement about electrical mechanic availability is not evidenced in the provided diff snippet/summary.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Add a Contact section with placeholders (Phone, Address, Hours) clearly marked as “To be added/Coming soon” (not fake data).",
+      "reason": "The diff summary indicates a contact section exists, but the required placeholder fields and “to be added”/“coming soon” wording are not visible in the provided (truncated) content.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Add generated static image assets (logo + hero banner) under frontend/public/assets/generated and reference them in the UI.",
+      "reason": "UI references the logo path, but no files under frontend/public/assets/generated are included in the diff; also no evidence of the required hero banner image being present and displayed.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication context/provider and related login/identity management hooks added.",
+      "reason": "BuildRequest is for a static marketing website and does not request authentication features; introducing II flows is out of scope for the stated requirements.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/main.tsx"
+      ]
+    },
+    {
+      "description": "Actor creation hook and react-query setup for backend interaction.",
+      "reason": "No backend interaction/data fetching requirements were requested for the marketing site.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/main.tsx",
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

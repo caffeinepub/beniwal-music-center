@@ -1,0 +1,5 @@
+{
+  "frontend/src/App.tsx": "Single-page marketing website for Beniwal Music Center with sticky navigation, hero section with banner image, four main service sections (music systems, modifications, mechanic services, contact), and footer with smooth scroll navigation.",
+  "frontend/src/index.css": "Global styles with warm, industrial OKLCH color palette featuring deep burnt orange primary color, warm neutrals, and automotive-appropriate design tokens for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with Inter font family and custom design tokens matching the warm, industrial automotive theme."
+}

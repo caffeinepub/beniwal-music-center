@@ -1,0 +1,156 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Beniwal Music Center marketing website (single-page responsive landing)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create a responsive landing/home section that introduces “Beniwal Music Center” and summarizes offerings.",
+      "acceptanceCriteria": [
+        "Page shows the title “Beniwal Music Center” prominently.",
+        "Landing section includes a short description of the shop in English.",
+        "Layout is responsive (mobile + desktop) and visually coherent."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the single-page marketing layout with a clear landing/hero section containing the prominent “Beniwal Music Center” title and an English intro + brief summary of main offerings; render all required sections in a responsive layout."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Ensure the document metadata/title remains “Beniwal Music Center” and is consistent with the in-app header/hero branding."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add an informational “Tractor Music Systems” section describing products/services (no checkout).",
+      "acceptanceCriteria": [
+        "A section labeled “Tractor Music Systems” is present and easy to find via scrolling/navigation.",
+        "Section contains English descriptive text (not placeholder lorem ipsum)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add a dedicated “Tractor Music Systems” section with English informational copy (services/products overview only; no cart/checkout elements) and a stable section anchor/id for navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add an informational “Tractor Modification Materials” section mentioning reasonable prices.",
+      "acceptanceCriteria": [
+        "A section labeled “Tractor Modification Materials” is present.",
+        "Section explicitly mentions “reasonable prices” (or equivalent phrasing) in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add a dedicated “Tractor Modification Materials” section with English copy that explicitly communicates materials are available at reasonable prices, plus a stable section anchor/id for navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add an “Electrical Mechanic Services” section stating an electrical mechanic is available.",
+      "acceptanceCriteria": [
+        "A section labeled “Electrical Mechanic Services” (or very similar) is present.",
+        "Section clearly states availability of an electrical mechanic in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add a dedicated “Electrical Mechanic Services” section with English copy that clearly states an electrical mechanic is available, plus a stable section anchor/id for navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add a “Contact” section with placeholders for phone, address, and hours to be filled later.",
+      "acceptanceCriteria": [
+        "A section labeled “Contact” is present.",
+        "Contact section includes placeholders for at least: Phone, Address, and Hours.",
+        "Placeholders are clearly marked as “To be added” / “Coming soon” (or similar), not fake data."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add a “Contact” section containing clearly labeled placeholders for Phone, Address, and Business Hours marked as “To be added/Coming soon”, plus a stable section anchor/id for navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add simple, mobile-friendly navigation to jump to each section (Home, Tractor Music Systems, Tractor Modification Materials, Electrical Mechanic Services, Contact).",
+      "acceptanceCriteria": [
+        "Navigation is visible on desktop and usable on mobile (e.g., stacked or menu).",
+        "Clicking each nav item scrolls/jumps to the correct section."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Implement a header navigation with links that jump/scroll to the correct in-page section anchors (Home, Tractor Music Systems, Tractor Modification Materials, Electrical Mechanic Services, Contact), ensuring the nav adapts for mobile (e.g., stacked/collapsible)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Apply a cohesive, tractor/automotive-appropriate visual theme that avoids a blue/purple-dominant palette.",
+      "acceptanceCriteria": [
+        "Typography, buttons/links, and section styling look consistent across the page.",
+        "Primary color palette is not predominantly blue/purple.",
+        "Design feels appropriate for an automotive/tractor services shop (clean, bold, practical)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create global styles and Tailwind base layers (including CSS variables used by the template) with a warm, rugged automotive/tractor palette (avoiding blue/purple-dominant tones) and consistent typography/spacing defaults across sections."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust/extend theme tokens as needed to support the cohesive non-blue/purple brand styling (colors/typography/spacing) used across the site while keeping the design clean and practical."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Apply consistent section styling, typography hierarchy, and button/link styling using the site theme to ensure a cohesive look across the entire single-page layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add generated static image assets (logo + hero banner) under frontend/public/assets/generated and reference them in the UI.",
+      "acceptanceCriteria": [
+        "Generated images are present under frontend/public/assets/generated and are referenced by the UI.",
+        "Logo is displayed in the header/hero area.",
+        "Hero/banner image is displayed in the landing section without layout shift or distortion."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/bmc-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated logo asset at frontend/public/assets/generated/bmc-logo.dim_512x512.png (static public asset to be referenced by the UI)."
+        },
+        {
+          "path": "frontend/public/assets/generated/bmc-hero-banner.dim_1600x600.png",
+          "operation": "create",
+          "description": "Add the generated hero banner asset at frontend/public/assets/generated/bmc-hero-banner.dim_1600x600.png (static public asset to be referenced by the UI)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Reference frontend/public/assets/generated/bmc-logo.dim_512x512.png in the header/hero branding area and display frontend/public/assets/generated/bmc-hero-banner.dim_1600x600.png in the landing section with responsive sizing to avoid distortion and minimize layout shift."
+        }
+      ]
+    }
+  ]
+}
