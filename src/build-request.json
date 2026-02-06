@@ -1,87 +1,58 @@
 {
   "kind": "build_request",
-  "title": "Rebuild site to restore visible images and replace website icon with newly uploaded image",
+  "title": "Publish Beniwal Music Center website permanently with a stable shareable icp0.io link",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-12",
-      "text": "Generate a new set of brand icon assets from the newly uploaded image `download-2.webp` and use them consistently across the site (favicon in `frontend/index.html`, and the header/footer logo image in `frontend/src/App.tsx`).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-13"
-        ],
-        "quotes": [
-          "now use this image as website icon"
-        ]
-      },
-      "acceptanceCriteria": [
-        "`frontend/index.html` references the new generated favicon (32x32) and apple-touch-icon (180x180) under `/assets/generated/`.",
-        "Header and footer in `frontend/src/App.tsx` use the new generated square brand icon under `/assets/generated/`.",
-        "All user-facing text remains in English."
-      ]
-    },
-    {
-      "id": "REQ-13",
-      "text": "Fix the issue where images are not visible by ensuring all image assets referenced in the React app exist in the deployed build and are referenced via URL-safe paths (no broken image links in hero or section galleries).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-8",
-          "msg-9",
-          "msg-13",
-          "msg-14"
-        ],
-        "quotes": [
-          "they are not visible",
-          "re upload these according to your knowledge making website interesting and effective , now use this image as website icon",
-          "rebuilt the site"
-        ]
-      },
-      "acceptanceCriteria": [
-        "In the deployed site, the hero background image renders and the service-section galleries render without broken images.",
-        "Image URLs used by the app are URL-safe and load correctly in production hosting (e.g., avoid unencoded spaces in public asset paths).",
-        "If any optional images are missing at runtime, the UI degrades gracefully (no layout break), and missing images are not shown as broken thumbnails."
-      ]
-    },
-    {
-      "id": "REQ-14",
-      "text": "Rebuild/redeploy the site so that the public link resolves successfully (no “Canister ID Not Resolved” error) and the latest assets (including the new icon images) are served.",
+      "id": "REQ-1",
+      "text": "Deploy the existing Beniwal Music Center app as a permanent (non-draft, non-expiring) Internet Computer canister so the public icp0.io URL remains stable and does not later show “invalid canister” / “Canister ID Not Resolved”.",
       "target": "unknown",
       "source": {
         "messageIds": [
-          "msg-4",
-          "msg-6",
-          "msg-14"
+          "recent-messages"
         ],
         "quotes": [
-          "provide me a working link",
-          "🎉 Version 2 has been successfully released!",
-          "rebuilt the site"
+          "User: yes publish it",
+          "User: start build process"
         ]
       },
       "acceptanceCriteria": [
-        "The primary public URL for the site loads the SPA successfully in both mobile and desktop browsers without “Canister ID Not Resolved”.",
-        "After rebuild/redeploy, the favicon/website icon displayed in the browser tab matches the newly uploaded image-derived icon."
+        "A production (non-draft) deployment is created and the resulting icp0.io URL is stable (does not expire).",
+        "Visiting the published URL loads the site successfully (HTTP 200) and does not display “invalid canister” / “Canister ID Not Resolved”.",
+        "The published site serves the latest frontend build and static assets correctly (e.g., favicon and page assets load without 404 errors)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Provide the final permanent, shareable website link (icp0.io URL) that the user can send to others.",
+      "target": "unknown",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "User: provide me a working link of website which i can sent further",
+          "User: yes publish it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A single icp0.io link is produced for the permanent deployment and is verified to load the site in a fresh browser session."
       ]
     }
   ],
   "constraints": [
-    "Frontend immutable paths must not be edited: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, `frontend/src/components/ui`.",
-    "Backend must remain a single Motoko actor in `backend/main.mo`; only add `backend/migration.mo` if state migration is required."
+    "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
+    "Do not edit files under frontend/src/components/ui or other frontend immutable paths listed in SYSTEM_CONTEXT.",
+    "Use English for any user-facing text."
   ],
   "nonGoals": [
-    "Adding checkout/e-commerce functionality.",
-    "Adding new authentication providers (only Internet Identity supported).",
-    "Adding new backend features (the backend is currently unused and may remain unchanged)."
+    "Adding new website pages/sections or changing the existing marketing content.",
+    "Implementing new backend features or databases.",
+    "Adding third-party authentication beyond Internet Identity."
   ],
   "imageRequirements": {
     "required": [],
-    "edits": [
-      "Enhance/crop to a clean square brand mark with improved contrast and legibility (download-2.webp > bmc-icon.dim_512x512.png)",
-      "Create favicon from the same source (download-2.webp > favicon-32.dim_32x32.png)",
-      "Create Apple touch icon from the same source (download-2.webp > apple-touch-icon.dim_180x180.png)"
-    ]
+    "edits": []
   },
   "userProfileUpdate": {
     "goalsToAdd": [],

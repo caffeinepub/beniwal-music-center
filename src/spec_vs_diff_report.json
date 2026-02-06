@@ -1,65 +1,63 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-05T22:08:40.966Z",
-  "summary": "Diff adds a SafeImage component and updates App.tsx to use a new generated brand icon path. It also claims index.html favicon updates and broader styling/theme changes, but the diff summary does not provide evidence that the new icon files were actually added, that all broken images were fixed end-to-end, or that the redeploy/canister-resolution issue was addressed.",
+  "generatedAt": "2026-02-06T18:13:20.295Z",
+  "summary": "The diff adds a frontend helper to construct/copy an icp0.io share link from an environment variable and introduces deployment documentation, but it does not (and cannot, from the shown changes) actually perform or guarantee a permanent non-draft Internet Computer deployment or provide the final stable icp0.io URL. Several additional frontend content/design/asset changes appear unrelated to the requested deployment/link-only scope and may conflict with the stated non-goals about not changing marketing content.",
   "missing_requirements": [
     {
-      "id": "REQ-12",
-      "requirement": "Generate new brand icon assets from download-2.webp and reference them consistently (favicon + apple-touch-icon in frontend/index.html under /assets/generated/; header/footer logo in App.tsx uses generated square icon).",
-      "reason": "App.tsx references /assets/generated/bmc-icon.dim_512x512.png, but the diff summary does not show the actual generated image assets being added under frontend/public/assets/generated/, and the App.tsx snippet only shows the header logo (no evidence for footer logo update). index.html changes are only described in a secondary summary file, not shown as direct diff evidence.",
+      "id": "REQ-1",
+      "requirement": "Deploy the existing Beniwal Music Center app as a permanent (non-draft, non-expiring) Internet Computer canister so the public icp0.io URL remains stable and does not later show “invalid canister” / “Canister ID Not Resolved”.",
+      "reason": "The changes shown are limited to frontend code and documentation; there is no evidence of configuration or deployment artifacts (e.g., dfx canister IDs, network settings, CI/deploy scripts) that actually create a production (non-draft) deployment or ensure the canister remains permanently resolvable.",
       "evidence": [
-        "frontend/src/App.tsx",
-        "frontend-file-summaries.txt"
+        "frontend/DEPLOYMENT.md",
+        "frontend/src/config/shareLink.ts",
+        "backend/main.mo",
+        "project_state.json"
       ]
     },
     {
-      "id": "REQ-13",
-      "requirement": "Fix invisible/broken images: ensure all referenced assets exist in deployed build, use URL-safe paths, and degrade gracefully if optional images are missing (no broken thumbnails).",
-      "reason": "SafeImage provides graceful degradation, but the diff summary does not show concrete updates to the hero background and service-section gallery image paths or confirmation that all referenced assets exist and are URL-safe. App.tsx where those images live is truncated and the actual image path changes are not evidenced.",
+      "id": "REQ-2",
+      "requirement": "Provide the final permanent, shareable website link (icp0.io URL) that the user can send to others.",
+      "reason": "No concrete canister ID or final icp0.io URL is included; the implementation only constructs a URL at runtime from `import.meta.env.VITE_CANISTER_ID`, which is not the same as providing the final verified link.",
       "evidence": [
-        "frontend/src/components/SafeImage.tsx",
+        "frontend/src/config/shareLink.ts",
         "frontend/src/App.tsx",
-        "frontend-file-summaries.txt"
-      ]
-    },
-    {
-      "id": "REQ-14",
-      "requirement": "Rebuild/redeploy so the public link resolves (no “Canister ID Not Resolved”) and latest assets (including new icons) are served.",
-      "reason": "No deployment/rebuild configuration, canister configuration, or hosting changes are shown. The diff contains only frontend code and summary metadata; nothing evidences addressing canister ID resolution or redeployment steps.",
-      "evidence": [
-        "<file-diff> (no deploy/canister-related files shown)"
+        "frontend/DEPLOYMENT.md"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Introduced a new SafeImage component with placeholder UI text ('Image unavailable') and loading/error handling.",
-      "reason": "Not explicitly requested as a standalone feature; REQ-13 asks for graceful degradation, but the specific component implementation and placeholder UI are additional behavior beyond the stated acceptance criteria.",
+      "description": "Added in-app share link UI and copy-to-clipboard behavior based on VITE_CANISTER_ID.",
+      "reason": "The request was to publish permanently and provide the final link; it did not ask to add new UI functionality to the website for sharing/copying the link.",
       "evidence": [
-        "frontend/src/components/SafeImage.tsx"
+        "frontend/src/config/shareLink.ts",
+        "frontend/src/App.tsx",
+        "frontend-file-summaries.txt"
       ]
     },
     {
-      "description": "Changed/added a new global design theme (warm industrial OKLCH palette) and Tailwind config adjustments (Inter font, custom design tokens).",
-      "reason": "Not requested by REQ-12/13/14; the BuildRequest is focused on icons, broken images, and redeploy/canister resolution, and also lists constraints/non-goals rather than a redesign request.",
+      "description": "Added/changed branding/design/SEO/static asset work (new gallery uploads, favicon updates, color palette/tailwind/theme changes, and additional attribution text).",
+      "reason": "These appear to modify the existing marketing site content/appearance and add new assets, which were explicitly listed as non-goals (no changes to existing marketing content / no new sections).",
       "evidence": [
         "frontend-file-summaries.txt"
       ]
     },
     {
-      "description": "Updated HTML page title for SEO.",
-      "reason": "Not requested by REQ-12/13/14.",
+      "description": "Backend replaced with an empty Motoko actor containing only a comment stating no modifications are needed.",
+      "reason": "The request did not ask for backend code changes; this change risks removing existing backend behavior (even if minimal) without a requirement driving it.",
       "evidence": [
-        "frontend-file-summaries.txt"
+        "backend/main.mo"
       ]
     }
   ],
-  "confidence": 0.6,
+  "confidence": 0.74,
   "changed_files": [
+    "backend/main.mo",
     "frontend-file-summaries.txt",
+    "frontend/DEPLOYMENT.md",
     "frontend/src/App.tsx",
-    "frontend/src/components/SafeImage.tsx",
+    "frontend/src/config/shareLink.ts",
     "project_state.json"
   ]
 }

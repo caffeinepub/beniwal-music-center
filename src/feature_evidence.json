@@ -2,9 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-generate-a-new-set-of-brand-icon-assets-from-the-newly-uploaded-image-download-2-webp-and-use-them-consistently-across-the-site-favicon-in-frontend-index-html-and-the-header-footer-logo-image-in-frontend-src-app-tsx",
-      "featureTitle": "Generate a new set of brand icon assets from the newly uploaded image `download-2.webp` and use them consistently across the site (favicon in `frontend/index.html`, and the header/footer logo image in `frontend/src/App.tsx`).",
+      "featureId": "feature-deploy-the-existing-beniwal-music-center-app-as-a-permanent-non-draft-non-expiring-internet-computer-canister-so-the-public-icp0-io-url-remains-stable-and-does-not-later-show-invalid-canister-canister-id-not-resolved",
+      "featureTitle": "Deploy the existing Beniwal Music Center app as a permanent (non-draft, non-expiring) Internet Computer canister so the public icp0.io URL remains stable and does not later show “invalid canister” / “Canister ID Not Resolved”.",
       "files": [
+        "frontend/DEPLOYMENT.md",
         "frontend/src/App.tsx"
       ],
       "components": [
@@ -15,16 +16,17 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-12"
+        "REQ-1"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-fix-the-issue-where-images-are-not-visible-by-ensuring-all-image-assets-referenced-in-the-react-app-exist-in-the-deployed-build-and-are-referenced-via-url-safe-paths-no-broken-image-links-in-hero-or-section-galleries",
-      "featureTitle": "Fix the issue where images are not visible by ensuring all image assets referenced in the React app exist in the deployed build and are referenced via URL-safe paths (no broken image links in hero or section galleries).",
+      "featureId": "feature-provide-the-final-permanent-shareable-website-link-icp0-io-url-that-the-user-can-send-to-others",
+      "featureTitle": "Provide the final permanent, shareable website link (icp0.io URL) that the user can send to others.",
       "files": [
+        "frontend/DEPLOYMENT.md",
         "frontend/src/App.tsx",
-        "frontend/src/components/SafeImage.tsx"
+        "frontend/src/config/shareLink.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -34,23 +36,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-13"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-rebuild-redeploy-the-site-so-that-the-public-link-resolves-successfully-no-canister-id-not-resolved-error-and-the-latest-assets-including-the-new-icon-images-are-served",
-      "featureTitle": "Rebuild/redeploy the site so that the public link resolves successfully (no “Canister ID Not Resolved” error) and the latest assets (including the new icon images) are served.",
-      "files": [],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-14"
+        "REQ-2"
       ],
       "confidence": "high"
     }

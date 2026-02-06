@@ -1,128 +1,28 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
-  "summary": "Create a website for the shop \"Beniwal Music Center\" featuring information about tractor music systems, tractor modification materials, electrical mechanic services, and contact details (more info to be added later).",
+  "projectStateVersion": 3,
+  "summary": "Deploy a website to Internet Computer (icp0.io), moving from expiring draft deployments to a permanent published deployment with a shareable stable link.",
   "architectural_notes": [
-    "Support replacing the site favicon/website icon with a user-provided image (with minor visual enhancements).",
-    "Allow flexible placement of user-provided images across site sections to improve visual appeal.",
-    "Deployment target is an Internet Computer (icp0.io) canister; the shared link must resolve to a valid canister ID and serve static assets correctly."
+    "Current hosting target is Internet Computer (icp0.io); draft canisters expire, so permanent deployment is required for a stable shareable link."
   ],
   "known_issues": [
-    "Deployed site link returns “Canister ID Not Resolved” on both mobile and desktop for https://beni-wyal-music-center.icp0.io/ (gateway cannot determine destination canister).",
-    "Uploaded images and favicon/icon are reported as not visible on the deployed site; user requested re-upload/rebuild to restore visibility."
+    "Draft deployment links can become invalid due to canister expiration (\"invalid canister\" error) until redeployed or published permanently."
   ],
-  "isFixRequest": true,
-  "imageRequirements": "## Edit Images\n- Enhance/crop to a clean square brand mark with improved contrast and legibility (download-2.webp > bmc-icon.dim_512x512.png)\n- Create favicon from the same source (download-2.webp > favicon-32.dim_32x32.png)\n- Create Apple touch icon from the same source (download-2.webp > apple-touch-icon.dim_180x180.png)",
+  "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-create-a-responsive-website-titled-beniwal-music-center-with-a-clear-home-landing-section-that-introduces-the-shop-and-summarizes-the-main-offerings",
-      "title": "Create a responsive website titled “Beniwal Music Center” with a clear home/landing section that introduces the shop and summarizes the main offerings.",
+      "id": "feature-deploy-the-existing-beniwal-music-center-app-as-a-permanent-non-draft-non-expiring-internet-computer-canister-so-the-public-icp0-io-url-remains-stable-and-does-not-later-show-invalid-canister-canister-id-not-resolved",
+      "title": "Deploy the existing Beniwal Music Center app as a permanent (non-draft, non-expiring) Internet Computer canister so the public icp0.io URL remains stable and does not later show “invalid canister” / “Canister ID Not Resolved”.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-a-dedicated-section-for-tractor-music-systems-describing-the-products-services-offered-informational-content-only-no-checkout-required",
-      "title": "Add a dedicated section for “Tractor Music Systems” describing the products/services offered (informational content only; no checkout required).",
+      "id": "feature-provide-the-final-permanent-shareable-website-link-icp0-io-url-that-the-user-can-send-to-others",
+      "title": "Provide the final permanent, shareable website link (icp0.io URL) that the user can send to others.",
       "reqIds": [
         "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-dedicated-section-for-tractor-modification-materials-and-include-messaging-that-the-materials-are-available-at-reasonable-prices",
-      "title": "Add a dedicated section for “Tractor Modification Materials” and include messaging that the materials are available at reasonable prices.",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-dedicated-section-describing-electrical-mechanic-services-and-clearly-state-that-an-electrical-mechanic-is-available",
-      "title": "Add a dedicated section describing “Electrical Mechanic Services” and clearly state that an electrical mechanic is available.",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-contact-section-with-contact-information-fields-that-can-be-filled-in-later-use-clear-placeholders-such-as-phone-number-address-and-business-hours",
-      "title": "Add a “Contact” section with contact information fields that can be filled in later (use clear placeholders such as phone number, address, and business hours).",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-simple-navigation-e-g-header-links-to-jump-to-home-tractor-music-systems-tractor-modification-materials-electrical-mechanic-services-and-contact",
-      "title": "Add simple navigation (e.g., header links) to jump to: Home, Tractor Music Systems, Tractor Modification Materials, Electrical Mechanic Services, and Contact.",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-apply-a-cohesive-visual-theme-across-the-site-colors-typography-spacing-and-section-styling-suitable-for-a-tractor-automotive-shop-brand-avoid-a-blue-purple-dominant-palette",
-      "title": "Apply a cohesive visual theme across the site (colors, typography, spacing, and section styling) suitable for a tractor/automotive shop brand; avoid a blue/purple-dominant palette.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-generated-static-image-assets-logo-hero-banner-to-the-site-and-store-them-under-frontend-public-assets-generated",
-      "title": "Add generated static image assets (logo + hero banner) to the site and store them under frontend/public/assets/generated.",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-the-12-uploaded-images-as-optimized-static-assets-and-place-them-throughout-the-existing-single-page-site-to-make-it-more-visually-attractive-hero-relevant-service-sections-using-responsive-layouts-grid-cards-and-ensuring-images-are-cropped-appropriately-for-mobile-and-desktop",
-      "title": "Add the 12 uploaded images as optimized static assets and place them throughout the existing single-page site to make it more visually attractive (hero + relevant service sections), using responsive layouts (grid/cards) and ensuring images are cropped appropriately for mobile and desktop.",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-replace-the-website-icon-favicon-with-an-enhanced-version-derived-from-the-user-selected-uploaded-image-the-beniwal-music-center-beniwal-music-stereo-signboard-image-and-update-the-header-footer-logo-to-match-the-new-branding-image-where-appropriate",
-      "title": "Replace the website icon (favicon) with an enhanced version derived from the user-selected uploaded image (the Beniwal Music Center / Beniwal Music Stereo signboard image), and update the header/footer logo to match the new branding image where appropriate.",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-after-the-visual-updates-are-complete-add-a-clear-on-page-prompt-in-the-contact-section-asking-the-site-owner-to-provide-contact-information-phone-number-address-and-business-hours-so-the-placeholders-can-be-replaced-later-english-text",
-      "title": "After the visual updates are complete, add a clear on-page prompt in the Contact section asking the site owner to provide contact information (phone number, address, and business hours) so the placeholders can be replaced later (English text).",
-      "reqIds": [
-        "REQ-11"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-generate-a-new-set-of-brand-icon-assets-from-the-newly-uploaded-image-download-2-webp-and-use-them-consistently-across-the-site-favicon-in-frontend-index-html-and-the-header-footer-logo-image-in-frontend-src-app-tsx",
-      "title": "Generate a new set of brand icon assets from the newly uploaded image `download-2.webp` and use them consistently across the site (favicon in `frontend/index.html`, and the header/footer logo image in `frontend/src/App.tsx`).",
-      "reqIds": [
-        "REQ-12"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-fix-the-issue-where-images-are-not-visible-by-ensuring-all-image-assets-referenced-in-the-react-app-exist-in-the-deployed-build-and-are-referenced-via-url-safe-paths-no-broken-image-links-in-hero-or-section-galleries",
-      "title": "Fix the issue where images are not visible by ensuring all image assets referenced in the React app exist in the deployed build and are referenced via URL-safe paths (no broken image links in hero or section galleries).",
-      "reqIds": [
-        "REQ-13"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-rebuild-redeploy-the-site-so-that-the-public-link-resolves-successfully-no-canister-id-not-resolved-error-and-the-latest-assets-including-the-new-icon-images-are-served",
-      "title": "Rebuild/redeploy the site so that the public link resolves successfully (no “Canister ID Not Resolved” error) and the latest assets (including the new icon images) are served.",
-      "reqIds": [
-        "REQ-14"
       ],
       "version": 1
     }
@@ -130,61 +30,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Build a website titled \"Beniwal Music Center\"",
+      "summary": "Publish/deploy the website permanently so the icp0.io link is stable and does not expire (not a draft canister).",
       "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Add a home page describing the shop and its offerings",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Add a section for tractor music systems products/services",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Add a section for tractor modification materials (reasonable price messaging)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Add a section describing electrical mechanic availability/services",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Add a contact information section",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "Use uploaded images to make the website more attractive by placing them appropriately across relevant sections",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-8",
-      "summary": "Change/update the website icon (favicon) using the user-selected image with minor enhancements to make it more attractive",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-9",
-      "summary": "After completing the visual updates, prompt the user to provide contact information to fill in the Contact section",
-      "reqIds": [],
-      "status": "pending"
+      "status": "in_progress"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "Beniwal Music Center",
+  "projectName": "Publish Beniwal Music Center website permanently with a stable shareable icp0.io link",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

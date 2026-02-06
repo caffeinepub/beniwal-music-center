@@ -1,132 +1,95 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Restore site images, update brand icon assets, and ensure deploy-ready static asset wiring",
+  "title": "Beniwal Music Center permanent IC publish readiness (frontend-only)",
   "requirements": [
     {
-      "id": "REQ-12",
-      "summary": "Generate and wire new brand icon assets from download-2.webp for favicon and header/footer logo usage.",
+      "id": "REQ-1",
+      "summary": "Ensure the frontend build is publish-ready and consistently serves all referenced static assets for a stable IC canister deployment.",
       "acceptanceCriteria": [
-        "`frontend/index.html` references the new generated favicon (32x32) and apple-touch-icon (180x180) under `/assets/generated/`.",
-        "Header and footer in `frontend/src/App.tsx` use the new generated square brand icon under `/assets/generated/`.",
-        "All user-facing text remains in English."
+        "A production (non-draft) deployment is created and the resulting icp0.io URL is stable (does not expire).",
+        "Visiting the published URL loads the site successfully (HTTP 200) and does not display “invalid canister” / “Canister ID Not Resolved”.",
+        "The published site serves the latest frontend build and static assets correctly (e.g., favicon and page assets load without 404 errors)."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/bmc-icon.dim_512x512.png",
+          "path": "frontend/DEPLOYMENT.md",
           "operation": "create",
-          "description": "Add the newly generated square brand mark derived from `download-2.webp` (enhanced contrast/legibility) for use as the site logo in the React UI."
-        },
-        {
-          "path": "frontend/public/assets/generated/favicon-32.dim_32x32.png",
-          "operation": "create",
-          "description": "Add the newly generated 32x32 favicon derived from `download-2.webp` for browser tab icon usage."
-        },
-        {
-          "path": "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
-          "operation": "create",
-          "description": "Add the newly generated 180x180 Apple touch icon derived from `download-2.webp` for iOS home screen usage."
-        },
-        {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Ensure the favicon and apple-touch-icon link tags reference the new generated files under `frontend/public/assets/generated/` and that paths remain consistent for production builds."
+          "description": "Add concise deployment notes/checklist for producing a production-grade build and publishing to an Internet Computer canister (including common causes of missing assets/404s and how to confirm they are included in the build output). Use the github-export-icp-cli component as the reference for deployment workflow scaffolding; verify the component's usage instructions before implementing."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Ensure the header and footer logo `<img>` uses `bmc-icon.dim_512x512.png` under `frontend/public/assets/generated/` and remove/replace any older logo references if present."
-        }
-      ]
-    },
-    {
-      "id": "REQ-13",
-      "summary": "Fix broken/non-visible images by ensuring assets exist in the built output, use URL-safe paths, and gracefully handle missing optional images.",
-      "acceptanceCriteria": [
-        "In the deployed site, the hero background image renders and the service-section galleries render without broken images.",
-        "Image URLs used by the app are URL-safe and load correctly in production hosting (e.g., avoid unencoded spaces in public asset paths).",
-        "If any optional images are missing at runtime, the UI degrades gracefully (no layout break), and missing images are not shown as broken thumbnails."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/SafeImage.tsx",
-          "operation": "create",
-          "description": "Create a small React component wrapper around `<img>` that can hide itself or swap to an optional fallback when the image fails to load, preventing broken thumbnails and layout breaks."
-        },
-        {
-          "path": "frontend/public/assets/generated/bmc-hero-banner.dim_1600x600.png",
-          "operation": "create",
-          "description": "Ensure the hero background image asset exists at this exact path in the deployed build (copy from the existing project asset set if needed)."
+          "description": "Update image references so they point to committed, publicly served asset paths under frontend/public (preventing runtime 404s for gallery images). Keep all user-facing text in English and do not add new pages/sections. Verify shadcn-ui component usage instructions before implementing."
         },
         {
           "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg",
           "operation": "create",
-          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.20 AM.jpeg` into public uploads so it is included in the deployed build."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg",
-          "operation": "create",
-          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.21 AM (1).jpeg` into public uploads so it is included in the deployed build."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg",
-          "operation": "create",
-          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.21 AM (2).jpeg` into public uploads so it is included in the deployed build."
+          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg are served by the published canister without 404."
         },
         {
           "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg",
           "operation": "create",
-          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.21 AM.jpeg` into public uploads so it is included in the deployed build."
+          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg are served by the published canister without 404."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg",
+          "operation": "create",
+          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg are served by the published canister without 404."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg",
+          "operation": "create",
+          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg are served by the published canister without 404."
         },
         {
           "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg",
           "operation": "create",
-          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.22 AM.jpeg` into public uploads so it is included in the deployed build."
+          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg are served by the published canister without 404."
         },
         {
           "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg",
           "operation": "create",
-          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.22 AM (1).jpeg` into public uploads so it is included in the deployed build."
+          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg are served by the published canister without 404."
         },
         {
           "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg",
           "operation": "create",
-          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.22 AM (1)-1.jpeg` into public uploads so it is included in the deployed build."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg",
-          "operation": "create",
-          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.23 AM (1).jpeg` into public uploads so it is included in the deployed build."
+          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg are served by the published canister without 404."
         },
         {
           "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg",
           "operation": "create",
-          "description": "Add a URL-safe renamed copy of `WhatsApp Image 2026-02-06 at 2.51.23 AM.jpeg` into public uploads so it is included in the deployed build."
+          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg are served by the published canister without 404."
         },
         {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Update hero and gallery image `src` values to point to assets that exist in `frontend/public/assets/...` using URL-safe filenames (no spaces/parentheses), and render images via `SafeImage` so missing optional images do not show as broken thumbnails."
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg",
+          "operation": "create",
+          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg are served by the published canister without 404."
         }
       ]
     },
     {
-      "id": "REQ-14",
-      "summary": "Ensure frontend build is deploy-ready so the public link loads the latest SPA assets and displays the new favicon.",
+      "id": "REQ-2",
+      "summary": "Make it easy to obtain and share the final icp0.io link by displaying a copyable share URL derived from the deployed canister ID.",
       "acceptanceCriteria": [
-        "The primary public URL for the site loads the SPA successfully in both mobile and desktop browsers without “Canister ID Not Resolved”.",
-        "After rebuild/redeploy, the favicon/website icon displayed in the browser tab matches the newly uploaded image-derived icon."
+        "A single icp0.io link is produced for the permanent deployment and is verified to load the site in a fresh browser session."
       ],
       "file_operations": [
         {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Harden deploy behavior by ensuring static asset references (favicons and the module script path) are correct for production hosting, and add a `<base>` configuration if needed so the SPA resolves asset URLs reliably after redeploy."
+          "path": "frontend/src/config/shareLink.ts",
+          "operation": "create",
+          "description": "Add a small helper that constructs the public share URL from a build-time environment value (e.g., a canister ID) and the icp0.io domain, with safe fallbacks when not provided. Verify core-infrastructure component usage instructions before implementing."
         },
         {
-          "path": "frontend/public/assets/generated/favicon-32.dim_32x32.png",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Verify the generated favicon file content matches the newly uploaded image-derived icon and is the one served after rebuild/redeploy (replace file contents if necessary)."
+          "description": "Render a small, non-intrusive 'Share this website' area (e.g., near the contact/footer region) that shows the derived icp0.io URL and provides a copy-to-clipboard action when the value is present. Use shadcn-ui primitives already available in the project (do not modify frontend/src/components/ui). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/DEPLOYMENT.md",
+          "operation": "modify",
+          "description": "Document where to paste the final deployed canister ID (as a build-time environment value) so the UI displays a single shareable icp0.io link, and include a quick verification step (fresh session load). Verify github-export-icp-cli component usage instructions before implementing."
         }
       ]
     }

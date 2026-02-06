@@ -1,16 +1,28 @@
-import { Music, Wrench, Zap, Phone, MapPin, Clock, Menu, X, AlertCircle } from 'lucide-react';
+import { Music, Wrench, Zap, Phone, MapPin, Clock, Menu, X, AlertCircle, Copy, Check, Heart } from 'lucide-react';
 import { useState } from 'react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
 import { SafeImage } from '@/components/SafeImage';
+import { getShareLink, copyShareLink } from '@/config/shareLink';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const shareLink = getShareLink();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setMobileMenuOpen(false);
+    }
+  };
+
+  const handleCopyLink = async () => {
+    const success = await copyShareLink();
+    if (success) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     }
   };
 
@@ -350,39 +362,39 @@ function App() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="flex items-start gap-3">
                     <div className="rounded-full bg-primary p-1.5 mt-0.5">
-                      <div className="h-1.5 w-1.5 rounded-full bg-primary-foreground" />
+                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-1">Electrical Diagnostics</h4>
-                      <p className="text-sm text-muted-foreground">Complete system testing and fault identification</p>
-                    </div>
+                    <span className="text-muted-foreground">Complete electrical system diagnostics</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="rounded-full bg-primary p-1.5 mt-0.5">
-                      <div className="h-1.5 w-1.5 rounded-full bg-primary-foreground" />
+                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-1">Wiring & Repairs</h4>
-                      <p className="text-sm text-muted-foreground">Professional wiring solutions and repair services</p>
-                    </div>
+                    <span className="text-muted-foreground">Wiring repairs and replacements</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="rounded-full bg-primary p-1.5 mt-0.5">
-                      <div className="h-1.5 w-1.5 rounded-full bg-primary-foreground" />
+                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-1">System Installation</h4>
-                      <p className="text-sm text-muted-foreground">Expert installation of audio and electrical systems</p>
-                    </div>
+                    <span className="text-muted-foreground">Lighting system installation and upgrades</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="rounded-full bg-primary p-1.5 mt-0.5">
-                      <div className="h-1.5 w-1.5 rounded-full bg-primary-foreground" />
+                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-1">Maintenance Services</h4>
-                      <p className="text-sm text-muted-foreground">Regular maintenance to keep systems running smoothly</p>
+                    <span className="text-muted-foreground">Battery and alternator services</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="rounded-full bg-primary p-1.5 mt-0.5">
+                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
                     </div>
+                    <span className="text-muted-foreground">Custom electrical modifications</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="rounded-full bg-primary p-1.5 mt-0.5">
+                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
+                    </div>
+                    <span className="text-muted-foreground">Emergency repair services</span>
                   </div>
                 </div>
               </div>
@@ -394,70 +406,114 @@ function App() {
         <section id="contact" className="py-16 md:py-24 bg-accent/30">
           <div className="container">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-center">Contact Us</h2>
-              <p className="text-lg text-muted-foreground mb-8 text-center">
-                Get in touch with us for inquiries, quotes, or to schedule a service appointment.
-              </p>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Get in Touch</h2>
+                <p className="text-lg text-muted-foreground">
+                  Visit us or reach out for inquiries, quotes, or to schedule a service appointment.
+                </p>
+              </div>
 
-              {/* Owner Prompt Alert */}
-              <Alert className="mb-8 border-primary/50 bg-primary/5">
+              <Alert className="mb-8 border-primary/30 bg-primary/5">
                 <AlertCircle className="h-5 w-5 text-primary" />
-                <AlertDescription className="text-foreground">
-                  <strong>Site Owner:</strong> Please provide your phone number, business address, and operating hours to complete this section. This information will help customers reach you easily.
+                <AlertDescription className="text-base">
+                  <strong className="text-foreground">Owner Contact:</strong> For direct inquiries, please contact the owner at your convenience. We're here to help with all your tractor music system and modification needs.
                 </AlertDescription>
               </Alert>
 
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="rounded-xl border border-border bg-card p-6 shadow-sm text-center">
-                  <div className="inline-flex items-center justify-center rounded-full bg-primary/10 p-4 mb-4">
-                    <Phone className="h-6 w-6 text-primary" />
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-full bg-primary/10 p-3">
+                      <MapPin className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-card-foreground mb-2">Visit Our Shop</h3>
+                      <p className="text-muted-foreground">
+                        Beniwal Music Center<br />
+                        Main Market Area<br />
+                        [Your City, State]
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-semibold text-card-foreground mb-2">Phone</h3>
-                  <p className="text-muted-foreground text-sm">To be added</p>
                 </div>
-                <div className="rounded-xl border border-border bg-card p-6 shadow-sm text-center">
-                  <div className="inline-flex items-center justify-center rounded-full bg-primary/10 p-4 mb-4">
-                    <MapPin className="h-6 w-6 text-primary" />
+
+                <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-full bg-primary/10 p-3">
+                      <Clock className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-card-foreground mb-2">Business Hours</h3>
+                      <p className="text-muted-foreground">
+                        Monday - Saturday: 9:00 AM - 7:00 PM<br />
+                        Sunday: Closed<br />
+                        Emergency services available
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-semibold text-card-foreground mb-2">Address</h3>
-                  <p className="text-muted-foreground text-sm">To be added</p>
-                </div>
-                <div className="rounded-xl border border-border bg-card p-6 shadow-sm text-center">
-                  <div className="inline-flex items-center justify-center rounded-full bg-primary/10 p-4 mb-4">
-                    <Clock className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-card-foreground mb-2">Business Hours</h3>
-                  <p className="text-muted-foreground text-sm">To be added</p>
                 </div>
               </div>
+
+              {/* Share Link Section */}
+              {shareLink && (
+                <div className="mt-8 rounded-xl border border-border bg-card p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-card-foreground mb-3">Share This Website</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Share our website with friends and family who might need tractor music systems or modification services.
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={shareLink}
+                      readOnly
+                      className="flex-1 rounded-lg border border-border bg-background px-4 py-2 text-sm text-foreground"
+                    />
+                    <Button
+                      onClick={handleCopyLink}
+                      variant="outline"
+                      size="default"
+                      className="flex items-center gap-2"
+                    >
+                      {copied ? (
+                        <>
+                          <Check size={16} />
+                          Copied!
+                        </>
+                      ) : (
+                        <>
+                          <Copy size={16} />
+                          Copy
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-background py-8">
+      <footer className="border-t border-border/40 bg-background py-8">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <SafeImage 
-                src="/assets/generated/bmc-icon.dim_512x512.png" 
-                alt="Beniwal Music Center Logo" 
-                className="h-8 w-8 object-contain"
-              />
-              <span className="text-sm font-medium text-muted-foreground">Beniwal Music Center</span>
-            </div>
-            <p className="text-sm text-muted-foreground text-center">
-              © 2026. Built with ❤️ using{' '}
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>© 2026. Built with</span>
+              <Heart size={14} className="text-primary fill-primary" />
+              <span>using</span>
               <a 
                 href="https://caffeine.ai" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="font-medium text-foreground hover:text-primary transition-colors"
+                className="font-semibold text-foreground hover:text-primary transition-colors"
               >
                 caffeine.ai
               </a>
-            </p>
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Beniwal Music Center - Premium Tractor Audio Solutions
+            </div>
           </div>
         </div>
       </footer>
