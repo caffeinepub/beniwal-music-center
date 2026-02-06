@@ -1,5 +1,5 @@
 {
-  "frontend/src/App.tsx": "Single-page marketing website for Beniwal Music Center with sticky navigation, hero section, three service sections (music systems, modifications, mechanic services), contact section with owner alert, optional share link section with copy-to-clipboard functionality, and footer with caffeine.ai attribution.",
+  "frontend/src/App.tsx": "Single-page marketing website with sticky navigation, hero section, gallery slider section displaying backend images, service sections, admin panel section, contact section, and footer with caffeine.ai attribution.",
   "frontend/src/index.css": "Global styles with warm, industrial OKLCH color palette featuring deep burnt orange primary color, warm neutrals, and automotive-appropriate design tokens for both light and dark modes.",
   "frontend/tailwind.config.js": "Tailwind configuration extended with Inter font family and custom design tokens matching the warm, industrial automotive theme.",
   "frontend/index.html": "HTML entry point with updated favicon links (32x32 favicon and 180x180 apple-touch-icon) and enhanced page title for SEO.",
@@ -14,5 +14,8 @@
   "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg": "Gallery image asset for tractor modification materials section.",
   "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg": "Gallery image asset for tractor modification materials section.",
   "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg": "Gallery image asset for tractor modification materials section.",
-  "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg": "Gallery image asset for tractor modification materials section."
+  "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg": "Gallery image asset for tractor modification materials section.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for fetching gallery images, uploading/deleting/reordering images, updating metadata, and checking admin status with proper cache invalidation.",
+  "frontend/src/components/GallerySlider.tsx": "Responsive carousel component with auto-advance, touch/swipe support, next/prev controls, dot indicators, and gradient overlay for image titles/descriptions.",
+  "frontend/src/components/AdminGalleryPanel.tsx": "Admin panel with Internet Identity login, access control checks, image upload with progress tracking, delete/reorder controls, and clear error messaging for non-admin users."
 }

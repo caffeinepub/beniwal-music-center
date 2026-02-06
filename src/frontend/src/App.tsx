@@ -1,14 +1,21 @@
-import { Music, Wrench, Zap, Phone, MapPin, Clock, Menu, X, AlertCircle, Copy, Check, Heart } from 'lucide-react';
+import { Music, Wrench, Zap, Phone, MapPin, Clock, Menu, X, AlertCircle, Copy, Check, Heart, Shield } from 'lucide-react';
 import { useState } from 'react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { SafeImage } from '@/components/SafeImage';
+import { GallerySlider } from '@/components/GallerySlider';
+import { AdminGalleryPanel } from '@/components/AdminGalleryPanel';
+import { useGetGalleryImages } from '@/hooks/useQueries';
 import { getShareLink, copyShareLink } from '@/config/shareLink';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-function App() {
+const queryClient = new QueryClient();
+
+function AppContent() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const shareLink = getShareLink();
+  const { data: galleryImages, isLoading: galleryLoading } = useGetGalleryImages();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -49,6 +56,12 @@ function App() {
               Home
             </button>
             <button
+              onClick={() => scrollToSection('gallery')}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Gallery
+            </button>
+            <button
               onClick={() => scrollToSection('music-systems')}
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
@@ -65,6 +78,13 @@ function App() {
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               Mechanic Services
+            </button>
+            <button
+              onClick={() => scrollToSection('admin')}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
+            >
+              <Shield className="h-4 w-4" />
+              Admin
             </button>
             <button
               onClick={() => scrollToSection('contact')}
@@ -95,6 +115,12 @@ function App() {
                 Home
               </button>
               <button
+                onClick={() => scrollToSection('gallery')}
+                className="text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Gallery
+              </button>
+              <button
                 onClick={() => scrollToSection('music-systems')}
                 className="text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
@@ -111,6 +137,13 @@ function App() {
                 className="text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 Mechanic Services
+              </button>
+              <button
+                onClick={() => scrollToSection('admin')}
+                className="text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
+              >
+                <Shield className="h-4 w-4" />
+                Admin
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
@@ -153,6 +186,28 @@ function App() {
           </div>
         </section>
 
+        {/* Gallery Slider Section */}
+        <section id="gallery" className="py-16 md:py-24 bg-accent/30">
+          <div className="container">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">
+                Our Work Gallery
+              </h2>
+              {galleryLoading ? (
+                <div className="w-full h-96 bg-muted rounded-xl flex items-center justify-center">
+                  <p className="text-muted-foreground">Loading gallery...</p>
+                </div>
+              ) : galleryImages && galleryImages.length > 0 ? (
+                <GallerySlider images={galleryImages} />
+              ) : (
+                <div className="w-full h-96 bg-muted rounded-xl flex items-center justify-center">
+                  <p className="text-muted-foreground">No images available yet</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
         {/* Tractor Music Systems Section */}
         <section id="music-systems" className="py-16 md:py-24 bg-background">
           <div className="container">
@@ -166,58 +221,6 @@ function App() {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Transform your tractor cabin into a premium audio experience. We specialize in high-quality music systems designed specifically for agricultural vehicles, ensuring crystal-clear sound even in the toughest working conditions.
               </p>
-
-              {/* Image Gallery */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                  <SafeImage 
-                    src="/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg" 
-                    alt="Tractor with illuminated music system at night" 
-                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                    hideOnError
-                  />
-                </div>
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                  <SafeImage 
-                    src="/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg" 
-                    alt="Custom tractor speaker installation" 
-                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                    hideOnError
-                  />
-                </div>
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                  <SafeImage 
-                    src="/assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg" 
-                    alt="Premium speaker box with LED lighting" 
-                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                    hideOnError
-                  />
-                </div>
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                  <SafeImage 
-                    src="/assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg" 
-                    alt="Tractor with custom audio setup" 
-                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                    hideOnError
-                  />
-                </div>
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                  <SafeImage 
-                    src="/assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg" 
-                    alt="Tractor with music system in field" 
-                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                    hideOnError
-                  />
-                </div>
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                  <SafeImage 
-                    src="/assets/generated/speaker-box-photo.dim_1200x800.jpg" 
-                    alt="Professional speaker box system" 
-                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                    hideOnError
-                  />
-                </div>
-              </div>
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
@@ -262,42 +265,6 @@ function App() {
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                 Upgrade and customize your tractor with our extensive range of modification materials. From performance enhancements to aesthetic improvements, we stock everything you need at <span className="font-semibold text-foreground">reasonable prices</span>.
               </p>
-
-              {/* Image Gallery */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                  <SafeImage 
-                    src="/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg" 
-                    alt="Tractor modification parts and accessories" 
-                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                    hideOnError
-                  />
-                </div>
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                  <SafeImage 
-                    src="/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg" 
-                    alt="LED lights and modification materials" 
-                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                    hideOnError
-                  />
-                </div>
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                  <SafeImage 
-                    src="/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg" 
-                    alt="Tractor hood shelves and accessories" 
-                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                    hideOnError
-                  />
-                </div>
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                  <SafeImage 
-                    src="/assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg" 
-                    alt="Exhaust pipes and modification parts" 
-                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                    hideOnError
-                  />
-                </div>
-              </div>
 
               <div className="rounded-xl border border-border bg-card p-8 shadow-sm mb-8">
                 <h3 className="text-2xl font-semibold text-card-foreground mb-4">Available at Reasonable Prices</h3>
@@ -357,121 +324,119 @@ function App() {
               <div className="rounded-xl border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-transparent p-8 shadow-sm">
                 <h3 className="text-2xl font-semibold text-foreground mb-4">Expert Electrical Mechanic Available</h3>
                 <p className="text-muted-foreground mb-6">
-                  Our certified electrical mechanic brings years of experience working with agricultural machinery. No job is too big or too small.
+                  Whether you need routine maintenance, emergency repairs, or custom electrical installations, our skilled mechanic has the expertise to get the job done right.
                 </p>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="flex items-start gap-3">
-                    <div className="rounded-full bg-primary p-1.5 mt-0.5">
-                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <div className="rounded-full bg-primary/20 p-1 mt-1">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
                     </div>
-                    <span className="text-muted-foreground">Complete electrical system diagnostics</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="rounded-full bg-primary p-1.5 mt-0.5">
-                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
+                    <span className="text-muted-foreground">Complete electrical system diagnostics and repair</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="rounded-full bg-primary/20 p-1 mt-1">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
                     </div>
-                    <span className="text-muted-foreground">Wiring repairs and replacements</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="rounded-full bg-primary p-1.5 mt-0.5">
-                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
+                    <span className="text-muted-foreground">Music system and audio equipment installation</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="rounded-full bg-primary/20 p-1 mt-1">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
                     </div>
-                    <span className="text-muted-foreground">Lighting system installation and upgrades</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="rounded-full bg-primary p-1.5 mt-0.5">
-                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
+                    <span className="text-muted-foreground">Lighting upgrades and LED installations</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="rounded-full bg-primary/20 p-1 mt-1">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
                     </div>
-                    <span className="text-muted-foreground">Battery and alternator services</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="rounded-full bg-primary p-1.5 mt-0.5">
-                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
+                    <span className="text-muted-foreground">Wiring repairs and electrical troubleshooting</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="rounded-full bg-primary/20 p-1 mt-1">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
                     </div>
-                    <span className="text-muted-foreground">Custom electrical modifications</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="rounded-full bg-primary p-1.5 mt-0.5">
-                      <div className="h-2 w-2 rounded-full bg-primary-foreground" />
-                    </div>
-                    <span className="text-muted-foreground">Emergency repair services</span>
-                  </div>
-                </div>
+                    <span className="text-muted-foreground">Battery and alternator service</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
         </section>
 
+        {/* Admin Section */}
+        <section id="admin" className="py-16 md:py-24 bg-accent/30">
+          <div className="container">
+            <AdminGalleryPanel />
+          </div>
+        </section>
+
         {/* Contact Section */}
-        <section id="contact" className="py-16 md:py-24 bg-accent/30">
+        <section id="contact" className="py-16 md:py-24 bg-background">
           <div className="container">
             <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Get in Touch</h2>
-                <p className="text-lg text-muted-foreground">
-                  Visit us or reach out for inquiries, quotes, or to schedule a service appointment.
-                </p>
-              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">Get in Touch</h2>
+              
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                {/* Phone Card */}
+                <div className="rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="rounded-full bg-primary/10 p-3">
+                      <Phone className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-card-foreground">Phone</h3>
+                  </div>
+                  <a 
+                    href="tel:9992558253" 
+                    className="text-muted-foreground hover:text-primary transition-colors text-lg font-medium"
+                  >
+                    9992558253
+                  </a>
+                </div>
 
-              <Alert className="mb-8 border-primary/30 bg-primary/5">
-                <AlertCircle className="h-5 w-5 text-primary" />
-                <AlertDescription className="text-base">
-                  <strong className="text-foreground">Owner Contact:</strong> For direct inquiries, please contact the owner at your convenience. We're here to help with all your tractor music system and modification needs.
-                </AlertDescription>
-              </Alert>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-                  <div className="flex items-start gap-4">
+                {/* Address Card */}
+                <div className="rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-4">
                     <div className="rounded-full bg-primary/10 p-3">
                       <MapPin className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-card-foreground mb-2">Visit Our Shop</h3>
-                      <p className="text-muted-foreground">
-                        Beniwal Music Center<br />
-                        Main Market Area<br />
-                        [Your City, State]
-                      </p>
-                    </div>
+                    <h3 className="text-lg font-semibold text-card-foreground">Location</h3>
                   </div>
+                  <p className="text-muted-foreground">
+                    Near Vishkarma Mandir<br />
+                    Barwala-Hansi Road<br />
+                    Hisar
+                  </p>
                 </div>
 
-                <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-                  <div className="flex items-start gap-4">
+                {/* Hours Card */}
+                <div className="rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-4">
                     <div className="rounded-full bg-primary/10 p-3">
                       <Clock className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-card-foreground mb-2">Business Hours</h3>
-                      <p className="text-muted-foreground">
-                        Monday - Saturday: 9:00 AM - 7:00 PM<br />
-                        Sunday: Closed<br />
-                        Emergency services available
-                      </p>
-                    </div>
+                    <h3 className="text-lg font-semibold text-card-foreground">Hours</h3>
                   </div>
+                  <p className="text-muted-foreground">
+                    Open Daily<br />
+                    7:00 AM - 11:00 PM
+                  </p>
                 </div>
               </div>
 
               {/* Share Link Section */}
               {shareLink && (
-                <div className="mt-8 rounded-xl border border-border bg-card p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold text-card-foreground mb-3">Share This Website</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Share our website with friends and family who might need tractor music systems or modification services.
-                  </p>
-                  <div className="flex items-center gap-2">
+                <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-card-foreground mb-4">Share Our Website</h3>
+                  <div className="flex gap-2">
                     <input
                       type="text"
                       value={shareLink}
                       readOnly
-                      className="flex-1 rounded-lg border border-border bg-background px-4 py-2 text-sm text-foreground"
+                      className="flex-1 px-4 py-2 rounded-lg border border-border bg-background text-sm"
                     />
                     <Button
                       onClick={handleCopyLink}
                       variant="outline"
-                      size="default"
                       className="flex items-center gap-2"
                     >
                       {copied ? (
@@ -495,12 +460,12 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border/40 bg-background py-8">
+      <footer className="border-t border-border/40 bg-accent/30 py-8">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <span>© 2026. Built with</span>
-              <Heart size={14} className="text-primary fill-primary" />
+              <Heart className="h-4 w-4 text-primary fill-primary" />
               <span>using</span>
               <a 
                 href="https://caffeine.ai" 
@@ -518,6 +483,14 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AppContent />
+    </QueryClientProvider>
   );
 }
 

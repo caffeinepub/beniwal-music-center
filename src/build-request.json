@@ -1,67 +1,121 @@
 {
   "kind": "build_request",
-  "title": "Publish Beniwal Music Center website permanently with a stable shareable icp0.io link",
+  "title": "Add homepage image slider and admin-only image management (Internet Identity)",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Deploy the existing Beniwal Music Center app as a permanent (non-draft, non-expiring) Internet Computer canister so the public icp0.io URL remains stable and does not later show “invalid canister” / “Canister ID Not Resolved”.",
-      "target": "unknown",
+      "text": "Backend: Implement an image gallery store in the Motoko canister that supports listing images for the public homepage and admin-only mutations (add/update/delete/reorder). Store enough metadata to render a gallery/slider (id, title/caption optional, sortOrder, createdAt, and either a staticAssetPath or stored image bytes).",
+      "target": "backend",
       "source": {
         "messageIds": [
-          "recent-messages"
+          "msg-1",
+          "msg-2"
         ],
         "quotes": [
-          "User: yes publish it",
-          "User: start build process"
+          "yes start the process",
+          "yes give me a admin panel"
         ]
       },
       "acceptanceCriteria": [
-        "A production (non-draft) deployment is created and the resulting icp0.io URL is stable (does not expire).",
-        "Visiting the published URL loads the site successfully (HTTP 200) and does not display “invalid canister” / “Canister ID Not Resolved”.",
-        "The published site serves the latest frontend build and static assets correctly (e.g., favicon and page assets load without 404 errors)."
+        "Unauthenticated users can call a query method to list gallery images (ordered).",
+        "Gallery images returned include stable unique IDs and ordering information.",
+        "There are update methods to add an image, delete an image by ID, and update ordering.",
+        "If the canister has no stored images, it can still return a default list based on the 7 uploaded images as static asset paths (so the UI is not empty on first deploy)."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Provide the final permanent, shareable website link (icp0.io URL) that the user can send to others.",
-      "target": "unknown",
+      "text": "Backend: Add admin authorization enforced by Principal. Only the admin can call mutation methods for gallery management. Provide a way to read the current admin Principal and to change the admin (admin-only).",
+      "target": "backend",
       "source": {
         "messageIds": [
-          "recent-messages"
+          "msg-2"
         ],
         "quotes": [
-          "User: provide me a working link of website which i can sent further",
-          "User: yes publish it"
+          "yes give me a admin panel"
         ]
       },
       "acceptanceCriteria": [
-        "A single icp0.io link is produced for the permanent deployment and is verified to load the site in a fresh browser session."
+        "Mutation calls from non-admin principals are rejected with a clear error.",
+        "A query method exists to read the configured admin Principal (or an \"uninitialized\" state if not set).",
+        "Admin can transfer admin rights to another Principal using an explicit method.",
+        "Admin state persists across upgrades (stable)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Frontend: Add a homepage gallery/slider section that automatically renders the images from the backend gallery list in an attractive, responsive carousel/slider (desktop + mobile), with safe fallbacks for missing images using the existing SafeImage component.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-3"
+        ],
+        "quotes": [
+          "yes start the process",
+          "display it according to your knowlegde"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Homepage includes a dedicated gallery/slider section that displays all images from the backend list in order.",
+        "The slider supports next/previous controls and swipe/drag on mobile.",
+        "Images are responsive, do not cause layout shift, and handle load errors gracefully (e.g., hide broken items or show placeholder).",
+        "If backend returns the default static-asset list, those images render correctly."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Frontend: Add an Admin Panel UI (English text) accessible from the app (e.g., via a protected route or a clearly labeled admin entry point) that uses Internet Identity login and allows only the admin to manage gallery images: upload new images, delete images, and reorder images. Non-admin users must not see or use management controls.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "yes give me a admin panel"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin Panel includes an Internet Identity login action (using the existing Internet Identity provider/hooks) and shows the logged-in principal.",
+        "If the logged-in principal is not the admin, the panel shows an access denied message and hides all mutation controls.",
+        "Admin can upload an image (JPEG/PNG) and it appears in the homepage gallery after save.",
+        "Admin can delete an image and it is removed from the homepage gallery.",
+        "Admin can reorder images and the new order persists after page reload."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Frontend: Add the user-provided 7 uploaded images to the project as static assets and wire them as the initial/default gallery content (used when the backend has no stored images yet). Preserve the original uploaded files as-is.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "upload these images also to make it more attractive"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All 7 uploaded images are included in the frontend static assets under a consistent folder (e.g., frontend/public/assets/uploads/).",
+        "The default gallery list references these 7 images so the homepage gallery is populated without requiring admin uploads.",
+        "No hardcoded references remain to image filenames that do not exist in the repository."
       ]
     }
   ],
   "constraints": [
     "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
-    "Do not edit files under frontend/src/components/ui or other frontend immutable paths listed in SYSTEM_CONTEXT.",
-    "Use English for any user-facing text."
+    "Do not edit any files under frontend/src/components/ui or other paths listed in frontend.immutablePaths; compose existing components instead.",
+    "Use English for any user-facing text added in the Admin Panel and gallery section."
   ],
   "nonGoals": [
-    "Adding new website pages/sections or changing the existing marketing content.",
-    "Implementing new backend features or databases.",
-    "Adding third-party authentication beyond Internet Identity."
+    "Building a full product catalog or e-commerce flow (pricing, checkout, inventory).",
+    "Third-party authentication providers other than Internet Identity.",
+    "Real-time updates via WebSockets or push notifications.",
+    "AI-based image enhancement or automatic categorization beyond basic optional captions."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

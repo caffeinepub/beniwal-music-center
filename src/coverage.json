@@ -1,82 +1,98 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-06T18:13:20.298Z",
+  "generatedAt": "2026-02-06T18:49:37.237Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 5,
+    "implemented": 3,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Deploy the existing Beniwal Music Center app as a permanent (non-draft, non-expiring) Internet Computer canister so the public icp0.io URL remains stable and does not later show “invalid canister” / “Canister ID Not Resolved”.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/DEPLOYMENT.md",
-          "frontend/src/App.tsx",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg"
-        ],
-        "matchedFiles": [
-          "frontend/DEPLOYMENT.md",
-          "frontend/src/App.tsx",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg",
-          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg"
-        ]
+        "summary": "Backend: Implement an image gallery store in the Motoko canister that supports listing images for the public homepage and admin-only mutations (add/update/delete/reorder). Store enough metadata to render a gallery/slider (id, title/caption optional, sortOrder, createdAt, and either a staticAssetPath or stored image bytes).",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
       },
       {
         "id": "REQ-2",
-        "summary": "Provide the final permanent, shareable website link (icp0.io URL) that the user can send to others.",
+        "summary": "Backend: Add admin authorization enforced by Principal. Only the admin can call mutation methods for gallery management. Provide a way to read the current admin Principal and to change the admin (admin-only).",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Frontend: Add a homepage gallery/slider section that automatically renders the images from the backend gallery list in an attractive, responsive carousel/slider (desktop + mobile), with safe fallbacks for missing images using the existing SafeImage component.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/config/shareLink.ts",
-          "frontend/src/App.tsx",
-          "frontend/DEPLOYMENT.md"
+          "frontend/src/hooks/useGalleryImages.ts",
+          "frontend/src/components/GallerySlider.tsx",
+          "frontend/src/App.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/config/shareLink.ts",
-          "frontend/src/App.tsx",
-          "frontend/DEPLOYMENT.md"
+          "frontend/src/components/GallerySlider.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Frontend: Add an Admin Panel UI (English text) accessible from the app (e.g., via a protected route or a clearly labeled admin entry point) that uses Internet Identity login and allows only the admin to manage gallery images: upload new images, delete images, and reorder images. Non-admin users must not see or use management controls.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useAdminGallery.ts",
+          "frontend/src/components/AdminGalleryPanel.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/AdminGalleryPanel.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Frontend: Add the user-provided 7 uploaded images to the project as static assets and wire them as the initial/default gallery content (used when the backend has no stored images yet). Preserve the original uploaded files as-is.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg",
+          "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
     "backend/main.mo",
     "build-request.json",
     "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/DEPLOYMENT.md",
-    "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg",
-    "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg",
-    "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg",
-    "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg",
-    "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg",
-    "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg",
-    "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg",
-    "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg",
-    "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg",
     "frontend/src/App.tsx",
-    "frontend/src/config/shareLink.ts",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/AdminGalleryPanel.tsx",
+    "frontend/src/components/GallerySlider.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/utils/urlParams.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

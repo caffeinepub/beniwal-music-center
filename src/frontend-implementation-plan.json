@@ -1,95 +1,111 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Beniwal Music Center permanent IC publish readiness (frontend-only)",
+  "title": "Homepage gallery slider and admin-only gallery management UI (Internet Identity)",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Ensure the frontend build is publish-ready and consistently serves all referenced static assets for a stable IC canister deployment.",
+      "id": "REQ-3",
+      "summary": "Add a responsive homepage gallery/slider that renders ordered images from the backend gallery list using SafeImage fallbacks.",
       "acceptanceCriteria": [
-        "A production (non-draft) deployment is created and the resulting icp0.io URL is stable (does not expire).",
-        "Visiting the published URL loads the site successfully (HTTP 200) and does not display “invalid canister” / “Canister ID Not Resolved”.",
-        "The published site serves the latest frontend build and static assets correctly (e.g., favicon and page assets load without 404 errors)."
+        "Homepage includes a dedicated gallery/slider section that displays all images from the backend list in order.",
+        "The slider supports next/previous controls and swipe/drag on mobile.",
+        "Images are responsive, do not cause layout shift, and handle load errors gracefully (e.g., hide broken items or show placeholder).",
+        "If backend returns the default static-asset list, those images render correctly."
       ],
       "file_operations": [
         {
-          "path": "frontend/DEPLOYMENT.md",
+          "path": "frontend/src/hooks/useGalleryImages.ts",
           "operation": "create",
-          "description": "Add concise deployment notes/checklist for producing a production-grade build and publishing to an Internet Computer canister (including common causes of missing assets/404s and how to confirm they are included in the build output). Use the github-export-icp-cli component as the reference for deployment workflow scaffolding; verify the component's usage instructions before implementing."
+          "description": "Create a React Query hook that uses core-infrastructure actor access (via useActor) to fetch gallery images for display from the backend, returning loading/error states and an easy-to-consume array for UI. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/GallerySlider.tsx",
+          "operation": "create",
+          "description": "Create an attractive, responsive carousel/slider component that accepts gallery metadata and renders items using SafeImage with fixed aspect ratio/height to prevent layout shift; include next/prev controls plus mobile swipe/drag support; gracefully handle missing/broken images (hide item or show placeholder). Verify the component's usage instructions before implementing."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Update image references so they point to committed, publicly served asset paths under frontend/public (preventing runtime 404s for gallery images). Keep all user-facing text in English and do not add new pages/sections. Verify shadcn-ui component usage instructions before implementing."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg",
-          "operation": "create",
-          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg are served by the published canister without 404."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg",
-          "operation": "create",
-          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg are served by the published canister without 404."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg",
-          "operation": "create",
-          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg are served by the published canister without 404."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg",
-          "operation": "create",
-          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg are served by the published canister without 404."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg",
-          "operation": "create",
-          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg are served by the published canister without 404."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg",
-          "operation": "create",
-          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg are served by the published canister without 404."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg",
-          "operation": "create",
-          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg are served by the published canister without 404."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg",
-          "operation": "create",
-          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-23-am.jpeg are served by the published canister without 404."
-        },
-        {
-          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg",
-          "operation": "create",
-          "description": "Add the gallery image asset into the public static folder so requests to /assets/uploads/whatsapp-2026-02-06-02-51-23-am-1.jpeg are served by the published canister without 404."
+          "description": "Wire the new homepage gallery/slider section into the existing single-page layout (add a dedicated section near the top of the homepage), fetching images via useGalleryImages and rendering them through GallerySlider; ensure any image URL derivation uses blob-storage ExternalBlob direct URLs when provided by backend. Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
-      "id": "REQ-2",
-      "summary": "Make it easy to obtain and share the final icp0.io link by displaying a copyable share URL derived from the deployed canister ID.",
+      "id": "REQ-4",
+      "summary": "Add an admin-only gallery management panel (Internet Identity login) to upload, delete, and reorder homepage images; hide controls for non-admin users.",
       "acceptanceCriteria": [
-        "A single icp0.io link is produced for the permanent deployment and is verified to load the site in a fresh browser session."
+        "Admin Panel includes an Internet Identity login action (using the existing Internet Identity provider/hooks) and shows the logged-in principal.",
+        "If the logged-in principal is not the admin, the panel shows an access denied message and hides all mutation controls.",
+        "Admin can upload an image (JPEG/PNG) and it appears in the homepage gallery after save.",
+        "Admin can delete an image and it is removed from the homepage gallery.",
+        "Admin can reorder images and the new order persists after page reload."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/config/shareLink.ts",
+          "path": "frontend/src/hooks/useAdminGallery.ts",
           "operation": "create",
-          "description": "Add a small helper that constructs the public share URL from a build-time environment value (e.g., a canister ID) and the icp0.io domain, with safe fallbacks when not provided. Verify core-infrastructure component usage instructions before implementing."
+          "description": "Create a hook that wraps admin-oriented gallery operations using the authenticated actor from useActor: check isCallerAdmin/getCurrentAdmin, upload (JPEG/PNG) via blob-storage ExternalBlob, delete by id, and reorder by id list; include React Query cache invalidation for the public gallery query after mutations. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/AdminGalleryPanel.tsx",
+          "operation": "create",
+          "description": "Create an English Admin Panel UI section that uses the authorization component’s Internet Identity flow (useInternetIdentity) to login/logout, displays the logged-in principal, checks admin status before showing controls, and provides: (1) upload form (file + optional title/description), (2) delete controls per image, (3) reorder UI (drag-and-drop or move up/down) with an explicit save action; handle backend authorization failures with clear messages. Verify the component's usage instructions before implementing."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Render a small, non-intrusive 'Share this website' area (e.g., near the contact/footer region) that shows the derived icp0.io URL and provides a copy-to-clipboard action when the value is present. Use shadcn-ui primitives already available in the project (do not modify frontend/src/components/ui). Verify the component's usage instructions before implementing."
+          "description": "Add a clearly labeled Admin entry point in the existing navigation (desktop + mobile) that scrolls to an Admin section; render the AdminGalleryPanel within that section and ensure non-admin users only see login/access-denied messaging (no mutation controls). Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add the 7 user-provided images as static assets and ensure they are used as the initial/default gallery content without broken filename references.",
+      "acceptanceCriteria": [
+        "All 7 uploaded images are included in the frontend static assets under a consistent folder (e.g., frontend/public/assets/uploads/).",
+        "The default gallery list references these 7 images so the homepage gallery is populated without requiring admin uploads.",
+        "No hardcoded references remain to image filenames that do not exist in the repository."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-20-am.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded image file as a static asset (preserve original file as-is)."
         },
         {
-          "path": "frontend/DEPLOYMENT.md",
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-1.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded image file as a static asset (preserve original file as-is)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am-2.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded image file as a static asset (preserve original file as-is)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-21-am.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded image file as a static asset (preserve original file as-is)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1-1.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded image file as a static asset (preserve original file as-is)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am-1.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded image file as a static asset (preserve original file as-is)."
+        },
+        {
+          "path": "frontend/public/assets/uploads/whatsapp-2026-02-06-02-51-22-am.jpeg",
+          "operation": "create",
+          "description": "Add the uploaded image file as a static asset (preserve original file as-is)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Document where to paste the final deployed canister ID (as a build-time environment value) so the UI displays a single shareable icp0.io link, and include a quick verification step (fresh session load). Verify github-export-icp-cli component usage instructions before implementing."
+          "description": "Remove/adjust any hardcoded gallery image references so the homepage gallery content is driven by the backend gallery list (which should provide the default static-asset paths when empty), ensuring no references point to missing filenames; keep existing non-gallery imagery (e.g., hero/banner) intact. Verify the component's usage instructions before implementing."
         }
       ]
     }
